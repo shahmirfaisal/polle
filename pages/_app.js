@@ -4,6 +4,9 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { CacheProvider } from "@emotion/react";
 import theme from "../src/theme";
 import createEmotionCache from "../src/createEmotionCache";
+import "react-notifications/lib/notifications.css";
+import { NotificationContainer } from "react-notifications";
+import { PollContextProvider } from "../context/PollContext/";
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -18,8 +21,12 @@ const App = (props) => {
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
-        <Component {...pageProps} />
+        <PollContextProvider>
+          <Component {...pageProps} />
+        </PollContextProvider>
       </ThemeProvider>
+
+      <NotificationContainer />
     </CacheProvider>
   );
 };

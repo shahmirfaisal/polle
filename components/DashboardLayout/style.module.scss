@@ -1,0 +1,12 @@
+.nav {
+    display: flex;
+    flex-direction: column;
+
+    a {
+        color: black;
+        text-decoration: none;
+        &:not(:last-child) {
+            margin-bottom: 20px;
+        }
+    }
+}
