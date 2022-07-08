@@ -1,0 +1,64 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
+}
+
+datasource db {
+  provider             = "mysql"
+  url                  = env("DATABASE_URL")
+  referentialIntegrity = "prisma"
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  name      String
+  email     String   @unique
+  password  String
+  polls     Poll[]
+}
+
+model Poll {
+  id                    Int      @id @default(autoincrement())
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+  question              String
+  thanksMessage         String   @default("Thank You!")
+  showResults           Boolean  @default(true)
+  buttonBackgroundColor String
+  buttonTextColor       String
+  questionColor         String
+  answerColor           String
+  answerBackgroundColor String
+  backgroundColor       String
+  backgroundImage       String
+  user                  User     @relation(fields: [userId], references: [id])
+  userId                Int
+  answers               Answer[]
+}
+
+model Answer {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  name      String
+  votes     Vote[]
+  poll      Poll     @relation(fields: [pollId], references: [id])
+  pollId    Int
+}
+
+model Vote {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  device    Device
+  answer    Answer   @relation(fields: [answerId], references: [id])
+  answerId  Int
+}
+
+enum Device {
+  Mobile
+  Desktop
+  Tablet
+}
