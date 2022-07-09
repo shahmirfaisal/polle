@@ -5,6 +5,7 @@ export const PollContext = createContext();
 export const PollContextProvider = ({ children }) => {
   const [question, setQuestion] = useState("");
   const [answers, setAnswers] = useState([{ id: 1, value: "" }]);
+  const [thanksMessage, setThanksMessage] = useState("Thank You!");
 
   const changeQuestionHandler = (e) => setQuestion(e.target.value);
   const changeAnswerHandler = (id, newValue) => {
@@ -22,6 +23,8 @@ export const PollContextProvider = ({ children }) => {
     setAnswers(answers.filter((answer) => answer.id !== id));
   };
 
+  const changeThanksMessageHandler = (message) => setThanksMessage(message);
+
   const state = {
     question,
     changeQuestionHandler,
@@ -29,6 +32,8 @@ export const PollContextProvider = ({ children }) => {
     changeAnswerHandler,
     addAnswer,
     removeAnswer,
+    thanksMessage,
+    changeThanksMessageHandler,
   };
 
   return <PollContext.Provider value={state}>{children}</PollContext.Provider>;

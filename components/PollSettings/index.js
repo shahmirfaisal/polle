@@ -1,7 +1,46 @@
-import { Box, Button, Paper, Switch, Typography } from "@mui/material";
+import {
+  TextField,
+  Box,
+  Button,
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  Paper,
+  Switch,
+  Typography,
+  DialogActions,
+} from "@mui/material";
+import { useState, useContext } from "react";
 import classes from "./style.module.scss";
+import { PollContext } from "../../context/PollContext/";
 
 export const PollSettings = () => {
+  const [showResults, setShowResults] = useState(true);
+  const [open, setOpen] = useState(false);
+  const { thanksMessage, changeThanksMessageHandler } = useContext(PollContext);
+  const [message, setMessage] = useState(thanksMessage);
+
+  const openDialogHandler = () => {
+    setMessage(thanksMessage);
+    setOpen(true);
+  };
+
+  const closeDialogHandler = () => {
+    setOpen(false);
+  };
+
+  const changeShowResultsHandler = (event) => {
+    setShowResults(event.target.checked);
+  };
+
+  const changeMessageHandler = (e) => setMessage(e.target.value);
+
+  const submitMessageHandler = () => {
+    if (!message.trim().length) return;
+    changeThanksMessageHandler(message.trim());
+    closeDialogHandler();
+  };
+
   return (
     <Box>
       <Typography
@@ -19,14 +58,37 @@ export const PollSettings = () => {
       >
         <Box>
           <Typography>Show Results</Typography>
-          <Switch defaultChecked />
+          <Switch checked={showResults} onChange={changeShowResultsHandler} />
         </Box>
 
+        <Typography sx={{ fontWeight: 600, mb: -2, mt: 2 }}>
+          Thanks Message:
+        </Typography>
         <Box>
-          <Typography>Thank You Message</Typography>
-          <Button>Configure</Button>
+          <Typography>{thanksMessage}</Typography>
+          <Button onClick={openDialogHandler}>Configure</Button>
         </Box>
       </Paper>
+
+      <Dialog open={open} onClose={closeDialogHandler}>
+        <DialogTitle>Change Thank You Message</DialogTitle>
+        <DialogContent>
+          <TextField
+            autoFocus
+            margin="dense"
+            label="Message"
+            type="text"
+            fullWidth
+            variant="standard"
+            value={message}
+            onChange={changeMessageHandler}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={closeDialogHandler}>Cancel</Button>
+          <Button onClick={submitMessageHandler}>Change</Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 };
