@@ -1,9 +1,8 @@
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "../../../lib/prisma";
 import jwt from "jsonwebtoken";
 import { setCookies } from "cookies-next";
 import bcrypt from "bcrypt";
 
-const prisma = new PrismaClient();
 const EMAIL_REGEX = new RegExp("[a-z0-9]+@[a-z]+.[a-z]{2,3}");
 
 export default async (req, res) => {

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { AppBar, Box, Tab, Tabs, Typography } from "@mui/material";
 import { PollMaker } from "../../components/PollMaker";
 import { PollSettings } from "../../components/PollSettings";
+import { PollCustomize } from "../../components/PollCustomize";
 
 function TabPanel(props) {
   const { children, value, index } = props;
@@ -46,7 +47,7 @@ const CreatePollPage = ({ user }) => {
         <PollMaker />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Customize
+        <PollCustomize />
       </TabPanel>
       <TabPanel value={value} index={2}>
         <PollSettings />

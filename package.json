@@ -19,6 +19,7 @@
     "jsonwebtoken": "^8.5.1",
     "next": "latest",
     "react": "17.0.2",
+    "react-color": "^2.19.3",
     "react-dom": "17.0.2",
     "react-notifications": "^1.7.3",
     "sass": "^1.53.0"

@@ -1,0 +1,8 @@
+POST http://localhost:3000/api/polls
+content-type: application/json
+cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTY1NzM1NDA4OSwiZXhwIjoxNjU3NDQwNDg5fQ.Nw8daSbJVXqi9Nq00yhSMst7fdZ_DUbqF1xsx3XC0sU
+
+{
+    "question": "Who are you?",
+    "answers": [{"name": "shahmir"}]
+}

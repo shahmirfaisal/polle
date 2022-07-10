@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  CircularProgress,
   FormLabel,
   IconButton,
   InputAdornment,
@@ -20,6 +21,8 @@ export const PollMaker = () => {
     changeAnswerHandler,
     addAnswer,
     removeAnswer,
+    createPollHandler,
+    loading,
   } = useContext(PollContext);
 
   return (
@@ -81,8 +84,13 @@ export const PollMaker = () => {
           onClick={addAnswer}
         />
 
-        <Button type="submit" variant="contained">
-          Create
+        <Button
+          type="submit"
+          variant="contained"
+          disabled={loading}
+          onClick={createPollHandler}
+        >
+          Create {loading && <CircularProgress size={25} />}
         </Button>
       </Paper>
     </Box>

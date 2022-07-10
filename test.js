@@ -1,9 +1,11 @@
-const { PrismaClient } = require("@prisma/client");
+const axios = require("axios");
 
-const prisma = new PrismaClient();
-
-prisma.user
-  .create({
-    data: { name: "shahmir", email: "shahmir@gmail.com", password: "1234" },
+axios
+  .post("http://localhost:3000/api/polls", {
+    question: "Who are you?",
+    answers: [{ name: "Shahmir" }],
   })
-  .then((res) => console.log(res));
+  .then((res) => console.log(res.data))
+  .catch((error) => {
+    console.log(error.message);
+  });

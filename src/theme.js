@@ -6,6 +6,7 @@ const theme = createTheme({
     fontFamily: "'Montserrat', sans-serif",
   },
   palette: {
+    // primary: { main: "#FF5722" },
     background: {
       default: "#f7f7f7",
     },

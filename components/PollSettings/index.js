@@ -15,9 +15,13 @@ import classes from "./style.module.scss";
 import { PollContext } from "../../context/PollContext/";
 
 export const PollSettings = () => {
-  const [showResults, setShowResults] = useState(true);
   const [open, setOpen] = useState(false);
-  const { thanksMessage, changeThanksMessageHandler } = useContext(PollContext);
+  const {
+    thanksMessage,
+    changeThanksMessageHandler,
+    showResults,
+    changeShowResultsHandler,
+  } = useContext(PollContext);
   const [message, setMessage] = useState(thanksMessage);
 
   const openDialogHandler = () => {
@@ -27,10 +31,6 @@ export const PollSettings = () => {
 
   const closeDialogHandler = () => {
     setOpen(false);
-  };
-
-  const changeShowResultsHandler = (event) => {
-    setShowResults(event.target.checked);
   };
 
   const changeMessageHandler = (e) => setMessage(e.target.value);
