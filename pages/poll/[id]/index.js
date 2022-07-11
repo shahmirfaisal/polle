@@ -33,7 +33,6 @@ const Poll = ({ poll }) => {
     e.preventDefault();
 
     const isVoted = getCookie(`poll-${poll.id}`);
-    console.log(isVoted);
 
     if (isVoted) {
       setVoted(true);
@@ -48,7 +47,6 @@ const Poll = ({ poll }) => {
         answerId: +vote,
         device: getDeviceType(),
       });
-      console.log(data);
 
       NotificationManager.success("Vote Added!");
       setVoted(true);
