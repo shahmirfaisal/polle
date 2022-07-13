@@ -29,12 +29,12 @@ const DashboardPage = ({ user, polls }) => {
           p: 4,
           borderRadius: "20px",
           mt: 4,
-          maxWidth: "800px",
+          // maxWidth: "800px",
         }}
         component="section"
       >
         <Grid container>
-          <Grid item xs={9}>
+          <Grid item xs={10}>
             <Typography variant="h5" sx={{ fontWeight: 700, color: "#212b36" }}>
               Welcome Back! <br />
               {user.name}
@@ -57,7 +57,7 @@ const DashboardPage = ({ user, polls }) => {
             </Link>
           </Grid>
 
-          <Grid item xs={3}>
+          <Grid item xs={2}>
             <Image
               src="/dashboard.webp"
               width={400}

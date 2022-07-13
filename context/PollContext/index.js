@@ -14,6 +14,14 @@ export const PollContextProvider = ({ children }) => {
   const [showResults, setShowResults] = useState(true);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const [openDialog, setOpenDialog] = useState(false);
+  const [poll, setPoll] = useState(null);
+
+  const openDialogHandler = () => setOpenDialog(true);
+  const closeDialogHandler = () => {
+    setOpenDialog(false);
+    router.push("/dashboard");
+  };
 
   const changeQuestionHandler = (e) => setQuestion(e.target.value);
 
@@ -62,7 +70,8 @@ export const PollContextProvider = ({ children }) => {
           .map((answer) => ({ name: answer.value.trim() })),
       });
       NotificationManager.success("Poll Created!");
-      console.log(data);
+      setPoll(data);
+      setOpenDialog(true);
     } catch (error) {
       errorHandler(error);
     }
@@ -110,6 +119,10 @@ export const PollContextProvider = ({ children }) => {
     createPollHandler,
     loading,
     updatePollHandler,
+    openDialog,
+    openDialogHandler,
+    closeDialogHandler,
+    poll,
   };
 
   return <PollContext.Provider value={state}>{children}</PollContext.Provider>;

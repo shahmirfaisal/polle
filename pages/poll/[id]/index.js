@@ -48,6 +48,8 @@ const Poll = ({ poll }) => {
         device: getDeviceType(),
       });
 
+      console.log(data);
+
       NotificationManager.success("Vote Added!");
       setVoted(true);
     } catch (error) {

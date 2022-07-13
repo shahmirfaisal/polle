@@ -4,6 +4,12 @@ import {
   Typography,
   Link as MuiLink,
   CircularProgress,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
+  Button,
 } from "@mui/material";
 import Link from "next/link";
 import moment from "moment";
@@ -20,9 +26,14 @@ import { NotificationManager } from "react-notifications";
 export const PollItem = ({ poll, sx }) => {
   const router = useRouter();
   const [deleteLoading, setDeleteLoading] = useState(false);
+  const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
+
+  const openDeleteDialogHandler = () => setOpenDeleteDialog(true);
+  const closeDeleteDialogHandler = () => setOpenDeleteDialog(false);
 
   const deletePollHandler = async () => {
     setDeleteLoading(true);
+    setOpenDeleteDialog(false);
 
     try {
       await axios.delete(`/api/polls/${poll.id}`);
@@ -56,12 +67,18 @@ export const PollItem = ({ poll, sx }) => {
       </Typography>
 
       <Box sx={{ mt: 3, mb: 2 }}>
-        <EditIcon sx={{ cursor: "pointer" }} />
+        <EditIcon
+          sx={{ cursor: "pointer" }}
+          onClick={() => router.push(`/dashboard/edit-poll/${poll.id}`)}
+        />
         <AutoGraphIcon sx={{ mx: 2, cursor: "pointer" }} />
         {deleteLoading ? (
           <CircularProgress size={20} />
         ) : (
-          <DeleteIcon sx={{ cursor: "pointer" }} onClick={deletePollHandler} />
+          <DeleteIcon
+            sx={{ cursor: "pointer" }}
+            onClick={openDeleteDialogHandler}
+          />
         )}
       </Box>
 
@@ -87,6 +104,24 @@ export const PollItem = ({ poll, sx }) => {
       >
         {getTotalVotes(poll)} Votes
       </Box>
+
+      <Dialog open={openDeleteDialog} onClose={closeDeleteDialogHandler}>
+        <DialogTitle>Are you sure to delete?</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Deleting the poll will result in the removal of its answers and
+            votes as well.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button color="error" onClick={closeDeleteDialogHandler}>
+            Cancel
+          </Button>
+          <Button color="primary" onClick={deletePollHandler}>
+            Delete
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Paper>
   );
 };
