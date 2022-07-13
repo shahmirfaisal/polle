@@ -39,7 +39,7 @@ model Answer {
   createdAt DateTime @default(now())
   name      String
   votes     Vote[]
-  poll      Poll     @relation(fields: [pollId], references: [id])
+  poll      Poll     @relation(fields: [pollId], references: [id], onDelete: Cascade)
   pollId    Int
 }
 
@@ -47,7 +47,7 @@ model Vote {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   device    Device
-  answer    Answer   @relation(fields: [answerId], references: [id])
+  answer    Answer   @relation(fields: [answerId], references: [id], onDelete: Cascade)
   answerId  Int
 }
 

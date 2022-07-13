@@ -2,6 +2,7 @@ import { createContext, useState } from "react";
 import axios from "axios";
 import { errorHandler } from "../../utils/errorHandler";
 import { NotificationManager } from "react-notifications";
+import { useRouter } from "next/router";
 
 export const PollContext = createContext();
 
@@ -12,8 +13,10 @@ export const PollContextProvider = ({ children }) => {
   const [themeColor, setThemeColor] = useState("#1976D2");
   const [showResults, setShowResults] = useState(true);
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const changeQuestionHandler = (e) => setQuestion(e.target.value);
+
   const changeAnswerHandler = (id, newValue) => {
     const newAnswers = [...answers];
     newAnswers.map((answer) => {
@@ -22,9 +25,14 @@ export const PollContextProvider = ({ children }) => {
     setAnswers(newAnswers);
   };
 
-  const addAnswer = () => {
-    setAnswers([...answers, { id: answers.length + 1, value: "" }]);
+  const addAnswer = (value) => {
+    console.log(value);
+    setAnswers((answers) => [
+      ...answers,
+      { id: answers.length + 1, value: value || "" },
+    ]);
   };
+
   const removeAnswer = (id) => {
     setAnswers(answers.filter((answer) => answer.id !== id));
   };
@@ -62,6 +70,30 @@ export const PollContextProvider = ({ children }) => {
     setLoading(false);
   };
 
+  const updatePollHandler = async (e, id) => {
+    e.preventDefault();
+
+    setLoading(true);
+
+    try {
+      const { data } = await axios.put(`/api/polls/${id}`, {
+        question,
+        themeColor,
+        thanksMessage,
+        showResults,
+        answers: answers
+          .filter((answer) => answer.value.trim().length)
+          .map((answer) => ({ name: answer.value.trim() })),
+      });
+      NotificationManager.success("Poll Updated!");
+      router.push("/dashboard");
+    } catch (error) {
+      errorHandler(error);
+    }
+
+    setLoading(false);
+  };
+
   const state = {
     question,
     changeQuestionHandler,
@@ -77,6 +109,7 @@ export const PollContextProvider = ({ children }) => {
     changeShowResultsHandler,
     createPollHandler,
     loading,
+    updatePollHandler,
   };
 
   return <PollContext.Provider value={state}>{children}</PollContext.Provider>;

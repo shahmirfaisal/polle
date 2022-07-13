@@ -10,10 +10,10 @@ import {
   Typography,
 } from "@mui/material";
 import { AddBox, Close } from "@mui/icons-material";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { PollContext } from "../../context/PollContext/";
 
-export const PollMaker = () => {
+export const PollMaker = ({ poll }) => {
   const {
     question,
     changeQuestionHandler,
@@ -23,7 +23,16 @@ export const PollMaker = () => {
     removeAnswer,
     createPollHandler,
     loading,
+    updatePollHandler,
   } = useContext(PollContext);
+
+  useEffect(() => {
+    if (poll) {
+      changeQuestionHandler({ target: { value: poll.question } });
+      removeAnswer(1);
+      poll.answers.forEach((answer) => addAnswer(answer.name));
+    }
+  }, [poll]);
 
   return (
     <Box>
@@ -33,7 +42,7 @@ export const PollMaker = () => {
         sx={{ fontWeight: 600, mt: 3, mb: 2 }}
         align="center"
       >
-        Make your poll
+        {poll ? "Update your poll" : "Make your poll"}
       </Typography>
 
       <Paper
@@ -81,16 +90,19 @@ export const PollMaker = () => {
         <AddBox
           color="primary"
           sx={{ fontSize: 50, cursor: "pointer", mx: "auto", mt: 1, mb: 2 }}
-          onClick={addAnswer}
+          onClick={() => addAnswer("")}
         />
 
         <Button
           type="submit"
           variant="contained"
           disabled={loading}
-          onClick={createPollHandler}
+          onClick={(e) =>
+            poll ? updatePollHandler(e, poll.id) : createPollHandler(e)
+          }
         >
-          Create {loading && <CircularProgress size={25} />}
+          {poll ? "Update" : "Create"}{" "}
+          {loading && <CircularProgress size={25} />}
         </Button>
       </Paper>
     </Box>

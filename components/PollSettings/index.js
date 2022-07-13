@@ -10,11 +10,11 @@ import {
   Typography,
   DialogActions,
 } from "@mui/material";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import classes from "./style.module.scss";
 import { PollContext } from "../../context/PollContext/";
 
-export const PollSettings = () => {
+export const PollSettings = ({ poll }) => {
   const [open, setOpen] = useState(false);
   const {
     thanksMessage,
@@ -23,6 +23,13 @@ export const PollSettings = () => {
     changeShowResultsHandler,
   } = useContext(PollContext);
   const [message, setMessage] = useState(thanksMessage);
+
+  useEffect(() => {
+    if (poll) {
+      changeThanksMessageHandler(poll.thanksMessage);
+      changeShowResultsHandler({ target: { checked: poll.showResults } });
+    }
+  }, [poll]);
 
   const openDialogHandler = () => {
     setMessage(thanksMessage);

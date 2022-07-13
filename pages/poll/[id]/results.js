@@ -22,15 +22,9 @@ import { getDeviceType } from "../../../utils/getDeviceType";
 import { useRouter } from "next/router";
 import { getCookie } from "cookies-next";
 import Link from "next/link";
+import { getVotesPercentage } from "../../../utils/votes";
 
 const Poll = ({ poll }) => {
-  const calculateTotalVotes = () => {
-    return poll.answers.reduce(
-      (total, answer) => total + answer.votes.length,
-      0
-    );
-  };
-  console.log(calculateTotalVotes());
   return (
     <Box
       sx={{
@@ -74,21 +68,10 @@ const Poll = ({ poll }) => {
                     flexGrow: "2",
                     mr: 2,
                   }}
-                  value={
-                    +(
-                      (answer.votes.length * 100) /
-                      calculateTotalVotes()
-                    ).toFixed(1)
-                  }
+                  value={getVotesPercentage(poll, answer)}
                   variant="determinate"
                 />
-                <Typography>
-                  {(
-                    (answer.votes.length * 100) /
-                    calculateTotalVotes()
-                  ).toFixed(1)}
-                  %
-                </Typography>
+                <Typography>{getVotesPercentage(poll, answer)}%</Typography>
               </Box>
             </Box>
           ))}

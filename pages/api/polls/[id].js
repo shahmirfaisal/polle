@@ -1,15 +1,26 @@
-import {} from "../../lib/prisma";
-import { getUser } from "../../lib/getUser";
+import { getUser } from "../../../lib/getUser";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
 export default async (req, res) => {
+  const { id } = req.query;
   let { question, showResults, thanksMessage, themeColor, answers } = req.body;
+  console.log(answers);
 
   const user = await getUser(req, res);
 
-  if (req.method === "POST") {
+  if (req.method === "DELETE") {
+    if (!user) return res.status(401).json({ message: "Unauthenticated" });
+
+    await prisma.poll.delete({
+      where: {
+        id: +id,
+      },
+    });
+
+    res.status(200).json({ message: "Poll Deleted" });
+  } else if (req.method === "PUT") {
     if (!user) return res.status(401).json({ message: "Unauthenticated" });
 
     question = question.trim();
@@ -20,24 +31,29 @@ export default async (req, res) => {
     if (!answers.length)
       return res.status(422).json({ message: "Add an answer!" });
 
-    const poll = await prisma.poll.create({
+    const poll = await prisma.poll.update({
+      where: {
+        id: +id,
+      },
+
       data: {
         question,
         thanksMessage,
         showResults,
         themeColor,
+
         answers: {
-          create: answers,
-        },
-        user: {
-          connect: {
-            id: user.id,
+          // Delete previous answers
+          deleteMany: {
+            pollId: +id,
           },
+          // Add new ones
+          create: answers,
         },
       },
     });
 
-    res.status(201).json(poll);
+    res.json(poll);
   } else {
     res.status(424).json({ message: "Invalid method!" });
   }

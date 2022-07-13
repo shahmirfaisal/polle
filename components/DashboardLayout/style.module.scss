@@ -1,12 +1,32 @@
 .nav {
     display: flex;
     flex-direction: column;
+    margin-left: -16px;
 
     a {
-        color: black;
+        color: #637381;
         text-decoration: none;
+        padding: 10px 15px;
+        border-radius: 0 100px 100px 0;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        
+        & > svg {
+            margin-right: 5px;
+        }
+
+        &:hover {
+            background-color: #EBF8F2;
+        }
+
         &:not(:last-child) {
             margin-bottom: 20px;
         }
     }
+}
+
+a.activeLink {
+    color: #00AB55;
+    background-color: #EBF8F2;
 }

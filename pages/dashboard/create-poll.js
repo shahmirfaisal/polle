@@ -5,6 +5,7 @@ import { AppBar, Box, Tab, Tabs, Typography } from "@mui/material";
 import { PollMaker } from "../../components/PollMaker";
 import { PollSettings } from "../../components/PollSettings";
 import { PollCustomize } from "../../components/PollCustomize";
+import { PollManager } from "../../components/PollManager/";
 
 function TabPanel(props) {
   const { children, value, index } = props;
@@ -13,47 +14,7 @@ function TabPanel(props) {
 }
 
 const CreatePollPage = ({ user }) => {
-  const [value, setValue] = useState(0);
-
-  const changeTabHandler = (event, newValue) => {
-    setValue(newValue);
-  };
-
-  return (
-    <DashboardLayout user={user}>
-      <Typography
-        component="h1"
-        variant="h3"
-        sx={{ fontWeight: 600, mt: 2, mb: 3 }}
-        align="center"
-      >
-        Create a Poll
-      </Typography>
-
-      <AppBar position="relative">
-        <Tabs
-          value={value}
-          onChange={changeTabHandler}
-          variant="fullWidth"
-          textColor="inherit"
-        >
-          <Tab label="Poll" />
-          <Tab label="Customize" />
-          <Tab label="Settings" />
-        </Tabs>
-      </AppBar>
-
-      <TabPanel value={value} index={0}>
-        <PollMaker />
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <PollCustomize />
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        <PollSettings />
-      </TabPanel>
-    </DashboardLayout>
-  );
+  return <PollManager user={user} />;
 };
 
 export const getServerSideProps = async ({ req, res }) => {

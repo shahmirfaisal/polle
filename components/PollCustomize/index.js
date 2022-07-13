@@ -9,10 +9,10 @@ import {
 import { Poll } from "../Poll";
 import classes from "./style.module.scss";
 import { CirclePicker } from "react-color";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { PollContext } from "../../context/PollContext/";
 
-export const PollCustomize = () => {
+export const PollCustomize = ({ poll }) => {
   const { themeColor, changeThemeColorHandler } = useContext(PollContext);
   const themeColors = [
     "#f44336",
@@ -34,6 +34,12 @@ export const PollCustomize = () => {
     "#795548",
     "#607d8b",
   ];
+
+  useEffect(() => {
+    if (poll) {
+      changeThemeColorHandler({ hex: poll.themeColor });
+    }
+  }, [poll]);
 
   return (
     <Box>

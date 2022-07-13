@@ -1,11 +1,8 @@
-const axios = require("axios");
+const { PrismaClient } = require("@prisma/client");
 
-axios
-  .post("http://localhost:3000/api/polls", {
-    question: "Who are you?",
-    answers: [{ name: "Shahmir" }],
-  })
-  .then((res) => console.log(res.data))
-  .catch((error) => {
-    console.log(error.message);
-  });
+const prisma = new PrismaClient();
+
+prisma.vote.delete({ where: { id: 21 } }).then(() => console.log("DELETED"));
+// prisma.vote
+//   .findMany({ select: { id: true } })
+//   .then((votes) => console.log(votes));
