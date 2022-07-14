@@ -10,6 +10,7 @@ import {
   DialogContentText,
   DialogActions,
   Button,
+  Tooltip,
 } from "@mui/material";
 import Link from "next/link";
 import moment from "moment";
@@ -22,14 +23,20 @@ import { useEffect, useState } from "react";
 import { errorHandler } from "../../utils/errorHandler";
 import { useRouter } from "next/router";
 import { NotificationManager } from "react-notifications";
+import ShareIcon from "@mui/icons-material/Share";
+import { SharePoll } from "../SharePoll/";
 
 export const PollItem = ({ poll, sx }) => {
   const router = useRouter();
   const [deleteLoading, setDeleteLoading] = useState(false);
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
+  const [openShareDialog, setOpenShareDialog] = useState(false);
 
   const openDeleteDialogHandler = () => setOpenDeleteDialog(true);
   const closeDeleteDialogHandler = () => setOpenDeleteDialog(false);
+
+  const openShareDialogHandler = () => setOpenShareDialog(true);
+  const closeShareDialogHandler = () => setOpenShareDialog(false);
 
   const deletePollHandler = async () => {
     setDeleteLoading(true);
@@ -67,18 +74,36 @@ export const PollItem = ({ poll, sx }) => {
       </Typography>
 
       <Box sx={{ mt: 3, mb: 2 }}>
-        <EditIcon
-          sx={{ cursor: "pointer" }}
-          onClick={() => router.push(`/dashboard/edit-poll/${poll.id}`)}
-        />
-        <AutoGraphIcon sx={{ mx: 2, cursor: "pointer" }} />
+        <Tooltip title="Edit" placement="top">
+          <EditIcon
+            sx={{ cursor: "pointer" }}
+            onClick={() => router.push(`/dashboard/edit-poll/${poll.id}`)}
+          />
+        </Tooltip>
+
+        <Tooltip title="Analytics" placement="top">
+          <AutoGraphIcon
+            sx={{ mx: 2, cursor: "pointer" }}
+            onClick={() => router.push(`/dashboard/poll/${poll.id}/analytics`)}
+          />
+        </Tooltip>
+
+        <Tooltip title="Share" placement="top">
+          <ShareIcon
+            sx={{ mr: 2, cursor: "pointer" }}
+            onClick={openShareDialogHandler}
+          />
+        </Tooltip>
+
         {deleteLoading ? (
           <CircularProgress size={20} />
         ) : (
-          <DeleteIcon
-            sx={{ cursor: "pointer" }}
-            onClick={openDeleteDialogHandler}
-          />
+          <Tooltip title="Delete" placement="top">
+            <DeleteIcon
+              sx={{ cursor: "pointer" }}
+              onClick={openDeleteDialogHandler}
+            />
+          </Tooltip>
         )}
       </Box>
 
@@ -104,6 +129,15 @@ export const PollItem = ({ poll, sx }) => {
       >
         {getTotalVotes(poll)} Votes
       </Box>
+
+      <Dialog open={openShareDialog} onClose={closeShareDialogHandler}>
+        <Box sx={{ p: 2 }}>
+          <Typography variant="h6" sx={{ mb: 2 }}>
+            Share your poll
+          </Typography>
+          <SharePoll poll={poll} />
+        </Box>
+      </Dialog>
 
       <Dialog open={openDeleteDialog} onClose={closeDeleteDialogHandler}>
         <DialogTitle>Are you sure to delete?</DialogTitle>

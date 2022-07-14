@@ -3,7 +3,6 @@ import { prisma } from "../../../lib/prisma";
 import { PollManager } from "../../../components/PollManager/";
 
 const EditPollPage = ({ user, poll }) => {
-  console.log(poll);
   return <PollManager user={user} poll={poll} />;
 };
 

@@ -5,15 +5,23 @@ import {
   Grid,
   Paper,
   Typography,
+  Button,
 } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import classes from "./style.module.scss";
 import AddBoxIcon from "@mui/icons-material/AddBox";
+import LogoutIcon from "@mui/icons-material/Logout";
+import { removeCookies } from "cookies-next";
 
 export const DashboardLayout = ({ children, user }) => {
   const router = useRouter();
+
+  const logoutHandler = () => {
+    removeCookies("token");
+    router.push("/login");
+  };
 
   return (
     <Grid container>
@@ -41,6 +49,7 @@ export const DashboardLayout = ({ children, user }) => {
                 Dashboard
               </a>
             </Link>
+
             <Link href="/dashboard/create-poll">
               <a
                 title="Create a Poll"
@@ -54,6 +63,10 @@ export const DashboardLayout = ({ children, user }) => {
                 New Poll
               </a>
             </Link>
+
+            <Button onClick={logoutHandler}>
+              <LogoutIcon /> Logout
+            </Button>
           </nav>
         </Paper>
       </Grid>

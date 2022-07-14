@@ -103,6 +103,14 @@ export const PollContextProvider = ({ children }) => {
     setLoading(false);
   };
 
+  const clearAll = () => {
+    setQuestion("");
+    setAnswers([{ id: 1, value: "" }]);
+    setThemeColor("#1976D2");
+    setShowResults(true);
+    setThanksMessage("Thank You!");
+  };
+
   const state = {
     question,
     changeQuestionHandler,
@@ -123,6 +131,7 @@ export const PollContextProvider = ({ children }) => {
     openDialogHandler,
     closeDialogHandler,
     poll,
+    clearAll,
   };
 
   return <PollContext.Provider value={state}>{children}</PollContext.Provider>;

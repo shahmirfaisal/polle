@@ -10,6 +10,7 @@ const theme = createTheme({
     background: {
       default: "#fdfdfd",
     },
+    // mode: "dark",
   },
 });
 

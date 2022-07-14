@@ -1,9 +1,10 @@
 import { DashboardLayout } from "../DashboardLayout/";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AppBar, Box, Tab, Tabs, Typography } from "@mui/material";
 import { PollMaker } from "../PollMaker";
 import { PollSettings } from "../PollSettings";
 import { PollCustomize } from "../PollCustomize";
+import { PollContext } from "../../context/PollContext/";
 
 function TabPanel(props) {
   const { children, value, index } = props;
@@ -13,6 +14,11 @@ function TabPanel(props) {
 
 export const PollManager = ({ user, poll }) => {
   const [value, setValue] = useState(0);
+  const { clearAll } = useContext(PollContext);
+
+  useEffect(() => {
+    return () => clearAll();
+  }, []);
 
   const changeTabHandler = (event, newValue) => {
     setValue(newValue);
