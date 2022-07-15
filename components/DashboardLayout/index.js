@@ -76,7 +76,7 @@ export const DashboardLayout = ({ children, user }) => {
                 }
               >
                 <HowToVoteIcon />
-                Poll
+                Polls
               </a>
             </Link>
 

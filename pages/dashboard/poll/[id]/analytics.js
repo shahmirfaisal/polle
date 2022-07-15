@@ -14,8 +14,8 @@ import {
 import { prisma } from "../../../../lib/prisma";
 import { useEffect, useState } from "react";
 import {
-  getDoughnutGraph,
-  getLineGraph,
+  getPollDoughnutGraph,
+  getPollLineGraph,
   colors,
 } from "../../../../utils/analytics";
 import { Box, Grid, Paper, Typography } from "@mui/material";
@@ -115,7 +115,7 @@ const PollAnalyticsPage = ({ user, poll }) => {
               p: 2,
             }}
           >
-            <Doughnut data={getDoughnutGraph(poll)} />
+            <Doughnut data={getPollDoughnutGraph(poll)} />
             {!getTotalVotes(poll) && (
               <Typography align="center">
                 This poll has not received any votes yet!
@@ -137,7 +137,7 @@ const PollAnalyticsPage = ({ user, poll }) => {
               p: 2,
             }}
           >
-            <Line data={getLineGraph(poll)} />
+            <Line data={getPollLineGraph(poll)} />
           </Paper>
         </Grid>
       </Grid>
