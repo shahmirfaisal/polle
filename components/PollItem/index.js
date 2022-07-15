@@ -54,13 +54,9 @@ export const PollItem = ({ poll, sx }) => {
 
   return (
     <Paper
-      elevation={0}
       sx={{
-        boxShadow:
-          "rgb(145 158 171 / 20%) 0px 0px 2px 0px, rgb(145 158 171 / 12%) 0px 12px 24px -4px",
         p: 3,
         position: "relative",
-        border: "0.3px solid rgba(0,0,0,0.05)",
         borderRadius: "16px",
         ...sx,
       }}
@@ -107,11 +103,29 @@ export const PollItem = ({ poll, sx }) => {
         )}
       </Box>
 
-      <Typography
-        sx={{ color: "#858282", fontWeight: 500, fontSize: "0.96rem" }}
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
       >
-        {moment(poll.createdAt).fromNow()}
-      </Typography>
+        <Link href={`/dashboard/poll/${poll.id}/analytics`}>
+          <MuiLink
+            sx={{ cursor: "pointer" }}
+            underline="hover"
+            title="View Analytics"
+          >
+            View Analytics
+          </MuiLink>
+        </Link>
+
+        <Typography
+          sx={{ color: "#858282", fontWeight: 500, fontSize: "0.96rem" }}
+        >
+          {moment(poll.createdAt).fromNow()}
+        </Typography>
+      </Box>
 
       <Box
         sx={{

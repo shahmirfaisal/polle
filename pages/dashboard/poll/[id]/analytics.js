@@ -12,12 +12,23 @@ import {
   LineElement,
 } from "chart.js";
 import { prisma } from "../../../../lib/prisma";
-import moment from "moment";
 import { useEffect, useState } from "react";
-import { getDoughnutGraph, getLineGraph } from "../../../../utils/analytics";
+import {
+  getDoughnutGraph,
+  getLineGraph,
+  colors,
+} from "../../../../utils/analytics";
 import { Box, Grid, Paper, Typography } from "@mui/material";
 import QuizIcon from "@mui/icons-material/Quiz";
 import AutoGraphIcon from "@mui/icons-material/AutoGraph";
+import {
+  getTotalVotes,
+  getDeviceVotes,
+  getVotesPercentage,
+} from "../../../../utils/votes";
+import LinearProgress, {
+  linearProgressClasses,
+} from "@mui/material/LinearProgress";
 
 Chart.register(
   ArcElement,
@@ -30,6 +41,12 @@ Chart.register(
 );
 
 const PollAnalyticsPage = ({ user, poll }) => {
+  const [barColors, setBarColors] = useState(colors);
+
+  useEffect(() => {
+    setBarColors(colors);
+  }, [colors]);
+
   return (
     <DashboardLayout user={user}>
       <Typography
@@ -46,28 +63,116 @@ const PollAnalyticsPage = ({ user, poll }) => {
         variant="h5"
         sx={{
           fontWeight: 600,
-          mb: 6,
+          mb: 2,
+          mt: 7,
           display: "flex",
           alignItems: "center",
-          justifyContent: "center",
         }}
       >
         <QuizIcon sx={{ mr: 1 }} /> {poll.question}
       </Typography>
 
-      <Grid container spacing={10}>
-        <Grid item xs>
-          <Paper sx={{ p: 2 }}>
+      {poll.answers.map((answer, i) => (
+        <Box sx={{ mb: 2 }} key={answer.id}>
+          <Typography sx={{ fontWeight: 600 }}>{answer.name}</Typography>
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <LinearProgress
+              sx={{
+                height: "18px",
+                borderRadius: "100px",
+                flexGrow: "2",
+                mr: 2,
+                [`& .${linearProgressClasses.bar}`]: {
+                  backgroundColor: barColors[i],
+                },
+                backgroundColor: "#dadada",
+              }}
+              value={getVotesPercentage(poll, answer)}
+              variant="determinate"
+            />
+            <Typography>{getVotesPercentage(poll, answer)}%</Typography>
+          </Box>
+        </Box>
+      ))}
+
+      {!getTotalVotes(poll) && (
+        <Typography align="center" sx={{ mb: 3 }}>
+          This poll has not received any votes yet!
+        </Typography>
+      )}
+
+      <Grid container spacing={10} component="section" sx={{ mt: 2 }}>
+        <Grid item xs={5}>
+          <Typography
+            component="h3"
+            variant="h6"
+            sx={{ fontWeight: 600, mb: 1 }}
+          >
+            Votes on each answer
+          </Typography>
+          <Paper
+            sx={{
+              p: 2,
+            }}
+          >
             <Doughnut data={getDoughnutGraph(poll)} />
+            {!getTotalVotes(poll) && (
+              <Typography align="center">
+                This poll has not received any votes yet!
+              </Typography>
+            )}
           </Paper>
         </Grid>
 
-        <Grid item xs>
-          <Paper sx={{ p: 2 }}>
+        <Grid item xs={7}>
+          <Typography
+            component="h3"
+            variant="h6"
+            sx={{ fontWeight: 600, mb: 1 }}
+          >
+            Votes on each day
+          </Typography>
+          <Paper
+            sx={{
+              p: 2,
+            }}
+          >
             <Line data={getLineGraph(poll)} />
           </Paper>
         </Grid>
       </Grid>
+
+      <Box component="section" sx={{ mt: 6 }}>
+        <Typography component="h3" variant="h6" sx={{ fontWeight: 600, mb: 1 }}>
+          Votes from different devices
+        </Typography>
+        <Paper
+          sx={{
+            p: 2,
+            maxWidth: "300px",
+          }}
+        >
+          <Grid container>
+            <Grid item xs sx={{ borderRight: 1, borderColor: "divider" }}>
+              <Typography sx={{ fontWeight: 500, mb: 1 }}>Desktop</Typography>
+              <Typography sx={{ fontWeight: 500, mb: 1 }}>Mobile</Typography>
+              <Typography sx={{ fontWeight: 500 }}>Tablet</Typography>
+            </Grid>
+
+            <Grid item xs>
+              <Typography align="center" sx={{ mb: 1 }}>
+                {getDeviceVotes(poll).Desktop}
+              </Typography>
+              <Typography align="center" sx={{ mb: 1 }}>
+                {getDeviceVotes(poll).Mobile}
+              </Typography>
+              <Typography align="center">
+                {getDeviceVotes(poll).Tablet}
+              </Typography>
+            </Grid>
+          </Grid>
+        </Paper>
+      </Box>
     </DashboardLayout>
   );
 };

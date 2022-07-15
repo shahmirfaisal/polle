@@ -14,6 +14,8 @@ import classes from "./style.module.scss";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { removeCookies } from "cookies-next";
+import BarChartIcon from "@mui/icons-material/BarChart";
+import HowToVoteIcon from "@mui/icons-material/HowToVote";
 
 export const DashboardLayout = ({ children, user }) => {
   const router = useRouter();
@@ -64,6 +66,34 @@ export const DashboardLayout = ({ children, user }) => {
               </a>
             </Link>
 
+            <Link href="/dashboard/polls">
+              <a
+                title="Manage Polls"
+                className={
+                  router.pathname === "/dashboard/polls"
+                    ? classes.activeLink
+                    : null
+                }
+              >
+                <HowToVoteIcon />
+                Poll
+              </a>
+            </Link>
+
+            <Link href="/dashboard/analytics">
+              <a
+                title="View Analytics"
+                className={
+                  router.pathname === "/dashboard/analytics"
+                    ? classes.activeLink
+                    : null
+                }
+              >
+                <BarChartIcon />
+                Analytics
+              </a>
+            </Link>
+
             <Button onClick={logoutHandler}>
               <LogoutIcon /> Logout
             </Button>
@@ -72,7 +102,7 @@ export const DashboardLayout = ({ children, user }) => {
       </Grid>
 
       <Grid item xs>
-        <Container>{children}</Container>
+        <Container sx={{ mb: 5 }}>{children}</Container>
       </Grid>
     </Grid>
   );

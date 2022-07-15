@@ -23,3 +23,19 @@ export const getTodayVotes = (poll) => {
 
   return votesCount;
 };
+
+export const getDeviceVotes = (poll) => {
+  let deviceVotes = {
+    Desktop: 0,
+    Mobile: 0,
+    Tablet: 0,
+  };
+
+  poll.answers.forEach((answer) =>
+    answer.votes.forEach((vote) => {
+      deviceVotes[vote.device]++;
+    })
+  );
+
+  return deviceVotes;
+};

@@ -10,7 +10,7 @@ const randColor = () => {
   );
 };
 
-let colors = [];
+export let colors = [];
 
 export const getDoughnutGraph = (poll) => {
   let backgroundColor;
@@ -47,14 +47,21 @@ export const getLineGraph = (poll) => {
     colors = borderColors;
   }
 
+  // Creating Labels
   let lineLabels = [];
-  poll.answers.forEach((answer) => {
-    answer.votes.forEach((vote) =>
-      lineLabels.push(moment(vote.createdAt).format("MMMM Do"))
-    );
-  });
+  // Getting all the dates from poll creation date to the current date
+  let dateIncrementor = 0;
+  while (true) {
+    const date = moment(poll.createdAt)
+      .add(dateIncrementor, "days")
+      .format("MMMM Do");
+    lineLabels.push(date);
+    if (date === moment().format("MMMM Do")) break;
+    dateIncrementor++;
+  }
   lineLabels = [...new Set(lineLabels)];
 
+  // Creating Data for each of those labels
   const lineData = [];
 
   poll.answers.forEach((answer, i) => {
