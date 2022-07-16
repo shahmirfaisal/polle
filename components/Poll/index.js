@@ -25,7 +25,13 @@ export const Poll = ({ themeColor }) => {
         alignItems: "center",
       }}
     >
-      <Paper sx={{ px: 3, py: 3, maxWidth: "500px", minWidth: "400px" }}>
+      <Paper
+        sx={{
+          px: 3,
+          py: 3,
+          minWidth: { xs: "auto", sm: "300px", md: "400px" },
+        }}
+      >
         <Typography
           component="h2"
           variant="h5"

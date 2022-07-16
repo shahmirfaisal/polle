@@ -11,6 +11,7 @@ import axios from "axios";
 import { errorHandler } from "../utils/errorHandler";
 import { getUser } from "../lib/getUser";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 const SignupPage = () => {
   const [name, setName] = useState("");
@@ -40,6 +41,10 @@ const SignupPage = () => {
 
   return (
     <Container maxWidth="xl">
+      <Head>
+        <title>Signup - Polle</title>
+      </Head>
+
       <Typography
         component="h1"
         variant="h3"

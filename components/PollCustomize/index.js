@@ -57,11 +57,11 @@ export const PollCustomize = ({ poll }) => {
       </Typography>
 
       <Grid container spacing={2}>
-        <Grid item xs>
+        <Grid item md={7} xs={12}>
           <Poll themeColor={themeColor} />
         </Grid>
 
-        <Grid item xs>
+        <Grid item md={5} xs={12}>
           <Paper
             className={classes.settings}
             sx={{
@@ -75,6 +75,7 @@ export const PollCustomize = ({ poll }) => {
                 colors={themeColors}
                 color={themeColor}
                 onChange={changeThemeColorHandler}
+                width="auto"
               />
             </FormControl>
           </Paper>

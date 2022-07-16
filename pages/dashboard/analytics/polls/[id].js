@@ -29,6 +29,7 @@ import {
 import LinearProgress, {
   linearProgressClasses,
 } from "@mui/material/LinearProgress";
+import Head from "next/head";
 
 Chart.register(
   ArcElement,
@@ -49,6 +50,10 @@ const PollAnalyticsPage = ({ user, poll }) => {
 
   return (
     <DashboardLayout user={user}>
+      <Head>
+        <title>Analytics - {poll.question}</title>
+      </Head>
+
       <Typography
         component="h1"
         variant="h2"
@@ -102,7 +107,7 @@ const PollAnalyticsPage = ({ user, poll }) => {
       )}
 
       <Grid container spacing={10} component="section" sx={{ mt: 2 }}>
-        <Grid item xs={5}>
+        <Grid item xs={12} md={5}>
           <Typography
             component="h3"
             variant="h6"
@@ -113,9 +118,13 @@ const PollAnalyticsPage = ({ user, poll }) => {
           <Paper
             sx={{
               p: 2,
+              height: "70vh",
             }}
           >
-            <Doughnut data={getPollDoughnutGraph(poll)} />
+            <Doughnut
+              data={getPollDoughnutGraph(poll)}
+              options={{ maintainAspectRatio: false }}
+            />
             {!getTotalVotes(poll) && (
               <Typography align="center">
                 This poll has not received any votes yet!
@@ -124,7 +133,7 @@ const PollAnalyticsPage = ({ user, poll }) => {
           </Paper>
         </Grid>
 
-        <Grid item xs={7}>
+        <Grid item xs={12} md={7}>
           <Typography
             component="h3"
             variant="h6"
@@ -135,9 +144,13 @@ const PollAnalyticsPage = ({ user, poll }) => {
           <Paper
             sx={{
               p: 2,
+              height: "70vh",
             }}
           >
-            <Line data={getPollLineGraph(poll)} />
+            <Line
+              data={getPollLineGraph(poll)}
+              options={{ maintainAspectRatio: false }}
+            />
           </Paper>
         </Grid>
       </Grid>

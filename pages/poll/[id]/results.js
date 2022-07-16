@@ -23,6 +23,7 @@ import { useRouter } from "next/router";
 import { getCookie } from "cookies-next";
 import Link from "next/link";
 import { getVotesPercentage } from "../../../utils/votes";
+import Head from "next/head";
 
 const Poll = ({ poll }) => {
   return (
@@ -38,6 +39,10 @@ const Poll = ({ poll }) => {
         gridTemplateColumns: { xs: "1fr", sm: "600px" },
       }}
     >
+      <Head>
+        <title>Results - {poll.question}</title>
+      </Head>
+
       <Paper sx={{ px: 3, py: 3 }}>
         <Typography
           variant="h4"

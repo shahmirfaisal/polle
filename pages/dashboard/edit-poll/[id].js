@@ -1,9 +1,18 @@
 import { getUser } from "../../../lib/getUser";
 import { prisma } from "../../../lib/prisma";
 import { PollManager } from "../../../components/PollManager/";
+import Head from "next/head";
 
 const EditPollPage = ({ user, poll }) => {
-  return <PollManager user={user} poll={poll} />;
+  return (
+    <>
+      <Head>
+        <title>Edit Your Poll</title>
+      </Head>
+
+      <PollManager user={user} poll={poll} />
+    </>
+  );
 };
 
 export const getServerSideProps = async ({ req, res, params }) => {

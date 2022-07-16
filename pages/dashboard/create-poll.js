@@ -21,6 +21,7 @@ import { NotificationManager } from "react-notifications";
 import { PollContext } from "../../context/PollContext/";
 import Link from "next/link";
 import { SharePoll } from "../../components/SharePoll/";
+import Head from "next/head";
 
 const CreatePollPage = ({ user }) => {
   const { openDialog, openDialogHandler, closeDialogHandler, poll } =
@@ -33,6 +34,10 @@ const CreatePollPage = ({ user }) => {
 
   return (
     <>
+      <Head>
+        <title>Create a New Poll</title>
+      </Head>
+
       <PollManager user={user} />
 
       <Dialog open={openDialog} onClose={closeDialogHandler}>

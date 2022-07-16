@@ -3,12 +3,17 @@ import { getUser } from "../../lib/getUser";
 import { DashboardLayout } from "../../components/DashboardLayout/";
 import { Typography } from "@mui/material";
 import { PollItem } from "../../components/PollItem/";
+import Head from "next/head";
 
 const PollsPage = ({ user, polls }) => {
   console.log(polls);
 
   return (
     <DashboardLayout user={user}>
+      <Head>
+        <title>Manage Your Polls</title>
+      </Head>
+
       <Typography
         component="h1"
         variant="h3"

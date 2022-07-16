@@ -80,7 +80,7 @@ export const PollItem = ({ poll, sx }) => {
         <Tooltip title="Analytics" placement="top">
           <AutoGraphIcon
             sx={{ mx: 2, cursor: "pointer" }}
-            onClick={() => router.push(`/dashboard/poll/${poll.id}/analytics`)}
+            onClick={() => router.push(`/dashboard/analytics/polls/${poll.id}`)}
           />
         </Tooltip>
 
@@ -110,7 +110,7 @@ export const PollItem = ({ poll, sx }) => {
           justifyContent: "space-between",
         }}
       >
-        <Link href={`/dashboard/poll/${poll.id}/analytics`}>
+        <Link href={`/dashboard/analytics/polls/${poll.id}`}>
           <MuiLink
             sx={{ cursor: "pointer" }}
             underline="hover"

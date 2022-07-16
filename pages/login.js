@@ -11,6 +11,7 @@ import axios from "axios";
 import { errorHandler } from "../utils/errorHandler";
 import { useRouter } from "next/router";
 import { getUser } from "../lib/getUser";
+import Head from "next/head";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -39,6 +40,10 @@ const LoginPage = () => {
 
   return (
     <Container maxWidth="xl">
+      <Head>
+        <title>Login - Polle</title>
+      </Head>
+
       <Typography
         component="h1"
         variant="h3"

@@ -7,6 +7,7 @@ import {
   Paper,
   Typography,
   Link as MuiLink,
+  Hidden,
 } from "@mui/material";
 import Image from "next/image";
 import AddIcon from "@mui/icons-material/Add";
@@ -19,10 +20,15 @@ import moment from "moment";
 import Link from "next/link";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import { PollItem } from "../../components/PollItem/";
+import Head from "next/head";
 
 const DashboardPage = ({ user, polls }) => {
   return (
     <DashboardLayout user={user}>
+      <Head>
+        <title>Dashboard</title>
+      </Head>
+
       <Box
         sx={{
           backgroundColor: "#C8FACD",
@@ -33,8 +39,8 @@ const DashboardPage = ({ user, polls }) => {
         }}
         component="section"
       >
-        <Grid container>
-          <Grid item xs={10}>
+        <Grid container spacing={3}>
+          <Grid item xs={12} lg={10} sm={8}>
             <Typography variant="h5" sx={{ fontWeight: 700, color: "#212b36" }}>
               Welcome Back! <br />
               {user.name}
@@ -57,14 +63,16 @@ const DashboardPage = ({ user, polls }) => {
             </Link>
           </Grid>
 
-          <Grid item xs={2}>
-            <Image
-              src="/dashboard.webp"
-              width={400}
-              height={400}
-              objectFit="contain"
-            />
-          </Grid>
+          <Hidden smDown>
+            <Grid item xs={12} lg={2} sm={4}>
+              <Image
+                src="/dashboard.webp"
+                width={400}
+                height={400}
+                objectFit="contain"
+              />
+            </Grid>
+          </Hidden>
         </Grid>
       </Box>
 

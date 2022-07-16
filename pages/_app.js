@@ -7,6 +7,7 @@ import createEmotionCache from "../src/createEmotionCache";
 import "react-notifications/lib/notifications.css";
 import { NotificationContainer } from "react-notifications";
 import { PollContextProvider } from "../context/PollContext/";
+import { UserContextProvider } from "../context/UserContext/";
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -21,9 +22,12 @@ const App = (props) => {
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
-        <PollContextProvider>
-          <Component {...pageProps} />
-        </PollContextProvider>
+
+        <UserContextProvider>
+          <PollContextProvider>
+            <Component {...pageProps} />
+          </PollContextProvider>
+        </UserContextProvider>
       </ThemeProvider>
 
       <NotificationContainer />

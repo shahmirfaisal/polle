@@ -20,6 +20,7 @@ import { NotificationManager } from "react-notifications";
 import { getDeviceType } from "../../../utils/getDeviceType";
 import { useRouter } from "next/router";
 import { getCookie } from "cookies-next";
+import Head from "next/head";
 
 const Poll = ({ poll }) => {
   const [vote, setVote] = useState(null);
@@ -48,8 +49,6 @@ const Poll = ({ poll }) => {
         device: getDeviceType(),
       });
 
-      console.log(data);
-
       NotificationManager.success("Vote Added!");
       setVoted(true);
     } catch (error) {
@@ -72,6 +71,10 @@ const Poll = ({ poll }) => {
         gridTemplateColumns: { xs: "1fr", sm: "500px" },
       }}
     >
+      <Head>
+        <title>{poll.question} - Polle</title>
+      </Head>
+
       <Paper sx={{ px: 3, py: 3 }}>
         {voted && (
           <>
