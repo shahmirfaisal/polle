@@ -12,6 +12,9 @@ import { errorHandler } from "../utils/errorHandler";
 import { getUser } from "../lib/getUser";
 import { useRouter } from "next/router";
 import Head from "next/head";
+import { Header } from "../components/Header";
+import { Footer } from "../components/Footer";
+import Link from "next/link";
 
 const SignupPage = () => {
   const [name, setName] = useState("");
@@ -40,63 +43,76 @@ const SignupPage = () => {
   };
 
   return (
-    <Container maxWidth="xl">
-      <Head>
-        <title>Signup - Polle</title>
-      </Head>
+    <>
+      <Header />
 
-      <Typography
-        component="h1"
-        variant="h3"
-        align="center"
-        sx={{ fontWeight: 700 }}
-      >
-        SignUp
-      </Typography>
+      <Container maxWidth="xl">
+        <Head>
+          <title>Signup - Polle</title>
+        </Head>
 
-      <Paper
-        component="form"
-        onSubmit={signupHandler}
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          maxWidth: "600px",
-          mx: "auto",
-          p: 3,
-          mt: 4,
-        }}
-      >
-        <TextField
-          type="text"
-          label="Name"
-          required
-          onChange={(e) => setName(e.target.value)}
-          value={name}
-        />
+        <Typography
+          component="h1"
+          variant="h3"
+          align="center"
+          sx={{ fontWeight: 700, mt: 4 }}
+        >
+          SignUp
+        </Typography>
 
-        <TextField
-          type="email"
-          label="Email"
-          required
-          sx={{ my: 3 }}
-          onChange={(e) => setEmail(e.target.value)}
-          value={email}
-        />
+        <Paper
+          component="form"
+          onSubmit={signupHandler}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            maxWidth: "600px",
+            mx: "auto",
+            p: 3,
+            mt: 4,
+          }}
+        >
+          <TextField
+            type="text"
+            label="Name"
+            required
+            onChange={(e) => setName(e.target.value)}
+            value={name}
+          />
 
-        <TextField
-          type="password"
-          label="Password"
-          required
-          sx={{ mb: 3 }}
-          onChange={(e) => setPassword(e.target.value)}
-          value={password}
-        />
+          <TextField
+            type="email"
+            label="Email"
+            required
+            sx={{ my: 3 }}
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+          />
 
-        <Button variant="contained" type="submit" disabled={loading}>
-          Signup {loading && <CircularProgress size={25} />}
-        </Button>
-      </Paper>
-    </Container>
+          <TextField
+            type="password"
+            label="Password"
+            required
+            sx={{ mb: 3 }}
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
+          />
+
+          <Button variant="contained" type="submit" disabled={loading}>
+            Signup {loading && <CircularProgress size={25} />}
+          </Button>
+        </Paper>
+
+        <Typography align="center" sx={{ mt: 2 }}>
+          Already have an account?{" "}
+          <Link href="/signup">
+            <a title="Signup">Login!</a>
+          </Link>
+        </Typography>
+      </Container>
+
+      <Footer />
+    </>
   );
 };
 

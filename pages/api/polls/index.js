@@ -9,16 +9,6 @@ export default async (req, res) => {
 
   const user = await getUser(req, res);
 
-  // prisma.poll.findMany({
-  //   include: {
-  //     answers: {
-  //       include: {
-  //         votes: true,
-  //       },
-  //     },
-  //   },
-  // });
-
   if (req.method === "POST") {
     if (!user) return res.status(401).json({ message: "Unauthenticated" });
 

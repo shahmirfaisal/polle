@@ -19,6 +19,7 @@ import BarChartIcon from "@mui/icons-material/BarChart";
 import HowToVoteIcon from "@mui/icons-material/HowToVote";
 import Image from "next/image";
 import { BottomNav } from "../BottomNav";
+import { Footer } from "../Footer/";
 import { Navbar } from "../Navbar";
 import { UserContext } from "../../context/UserContext/";
 import { useContext } from "react";
@@ -124,6 +125,8 @@ export const DashboardLayout = ({ children, user }) => {
             <Navbar />
           </Hidden>
           <Container sx={{ mb: 5 }}>{children}</Container>
+
+          <Footer />
         </Grid>
       </Grid>
     </>

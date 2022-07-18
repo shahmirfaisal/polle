@@ -5,6 +5,10 @@ import {
   Paper,
   TextField,
   Typography,
+  Toolbar,
+  AppBar,
+  Box,
+  Link as MuiLink,
 } from "@mui/material";
 import { useState } from "react";
 import axios from "axios";
@@ -12,6 +16,10 @@ import { errorHandler } from "../utils/errorHandler";
 import { useRouter } from "next/router";
 import { getUser } from "../lib/getUser";
 import Head from "next/head";
+import Link from "next/link";
+import Image from "next/image";
+import { Header } from "../components/Header";
+import { Footer } from "../components/Footer";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -39,55 +47,68 @@ const LoginPage = () => {
   };
 
   return (
-    <Container maxWidth="xl">
-      <Head>
-        <title>Login - Polle</title>
-      </Head>
+    <>
+      <Header />
 
-      <Typography
-        component="h1"
-        variant="h3"
-        align="center"
-        sx={{ fontWeight: 700 }}
-      >
-        Login
-      </Typography>
+      <Container maxWidth="xl">
+        <Head>
+          <title>Login - Polle</title>
+        </Head>
 
-      <Paper
-        component="form"
-        onSubmit={signupHandler}
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          maxWidth: "600px",
-          mx: "auto",
-          p: 3,
-          mt: 4,
-        }}
-      >
-        <TextField
-          type="email"
-          label="Email"
-          required
-          sx={{ my: 3 }}
-          onChange={(e) => setEmail(e.target.value)}
-          value={email}
-        />
+        <Typography
+          component="h1"
+          variant="h3"
+          align="center"
+          sx={{ fontWeight: 700, mt: 4 }}
+        >
+          Login
+        </Typography>
 
-        <TextField
-          type="password"
-          label="Password"
-          required
-          sx={{ mb: 3 }}
-          onChange={(e) => setPassword(e.target.value)}
-          value={password}
-        />
+        <Paper
+          component="form"
+          onSubmit={signupHandler}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            maxWidth: "600px",
+            mx: "auto",
+            p: 3,
+            mt: 4,
+          }}
+        >
+          <TextField
+            type="email"
+            label="Email"
+            required
+            sx={{ my: 3 }}
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+          />
 
-        <Button variant="contained" type="submit" disabled={loading}>
-          Login {loading && <CircularProgress size={25} />}
-        </Button>
-      </Paper>
-    </Container>
+          <TextField
+            type="password"
+            label="Password"
+            required
+            sx={{ mb: 3 }}
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
+          />
+
+          <Button variant="contained" type="submit" disabled={loading}>
+            Login {loading && <CircularProgress size={25} />}
+          </Button>
+        </Paper>
+
+        <Typography align="center" sx={{ mt: 2 }}>
+          Don't have an account yet?{" "}
+          <Link href="/signup">
+            <a title="Signup">Create a new one!</a>
+          </Link>
+        </Typography>
+      </Container>
+
+      <Footer />
+    </>
   );
 };
 

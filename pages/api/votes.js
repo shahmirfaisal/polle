@@ -22,7 +22,12 @@ export default async (req, res) => {
       },
     });
 
-    setCookie(`poll-${pollId}`, true, { req, res });
+    setCookie(`poll-${pollId}`, true, {
+      req,
+      res,
+      maxAge: 60 * 60 * 24 * 365 * 10, // a large value for never expiring cookies (10 years)
+      path: "/",
+    });
 
     res.status(201).json(answer);
   } else {

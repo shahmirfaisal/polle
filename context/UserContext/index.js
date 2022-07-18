@@ -1,4 +1,4 @@
-import { removeCookies } from "cookies-next";
+import { deleteCookie } from "cookies-next";
 import { useRouter } from "next/router";
 import { createContext } from "react";
 
@@ -8,7 +8,7 @@ export const UserContextProvider = ({ children }) => {
   const router = useRouter();
 
   const logoutHandler = () => {
-    removeCookies("token");
+    deleteCookie("token");
     router.push("/login");
   };
   return (

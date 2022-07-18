@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { setCookies } from "cookies-next";
+import { setCookie } from "cookies-next";
 import bcrypt from "bcrypt";
 import { prisma } from "../../../lib/prisma";
 
@@ -15,13 +15,13 @@ export default async (req, res) => {
       return res.status(422).json({ message: "Wrong password!" });
 
     const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
-      expiresIn: "1d",
+      expiresIn: "7d",
     });
 
-    setCookies("token", token, {
+    setCookie("token", token, {
       req,
       res,
-      maxAge: 60 * 60 * 24, // 1 day
+      maxAge: 60 * 60 * 24 * 7, // 7 days
       path: "/",
     });
 
