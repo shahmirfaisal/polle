@@ -13,6 +13,10 @@ const HomePage = ({ user }) => {
     <>
       <Head>
         <title>POLLE - Create, Distribute and Analyze Polls</title>
+        <meta
+          name="description"
+          content="POLLE is the easiest and fastest way to create, distribute and analyze your polls, from start to finish!"
+        />
       </Head>
 
       <Header user={user} />

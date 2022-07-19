@@ -111,6 +111,15 @@ export const PollContextProvider = ({ children }) => {
     setThanksMessage("Thank You!");
   };
 
+  const handleAnswerDragEnd = (result) => {
+    if (!result?.destination?.index) return;
+
+    const newAnswers = [...answers];
+    const [removedAnswer] = newAnswers.splice(result.source.index, 1);
+    newAnswers.splice(result.destination.index, 0, removedAnswer);
+    setAnswers(newAnswers);
+  };
+
   const state = {
     question,
     changeQuestionHandler,
@@ -132,6 +141,7 @@ export const PollContextProvider = ({ children }) => {
     closeDialogHandler,
     poll,
     clearAll,
+    handleAnswerDragEnd,
   };
 
   return <PollContext.Provider value={state}>{children}</PollContext.Provider>;
