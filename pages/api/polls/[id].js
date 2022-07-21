@@ -1,7 +1,5 @@
 import { getUser } from "../../../lib/getUser";
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { prisma } from "../../../lib/prisma";
 
 export default async (req, res) => {
   const { id } = req.query;

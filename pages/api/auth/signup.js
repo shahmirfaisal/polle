@@ -42,13 +42,9 @@ export default async (req, res) => {
       },
     });
 
-    console.log(user);
-
     const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
       expiresIn: "7d",
     });
-
-    console.log(token);
 
     setCookie("token", token, {
       req,

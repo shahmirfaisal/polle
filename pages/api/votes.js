@@ -1,9 +1,5 @@
-import {} from "../../lib/prisma";
-import { getUser } from "../../lib/getUser";
-import { PrismaClient } from "@prisma/client";
-import { getCookie, setCookie } from "cookies-next";
-
-const prisma = new PrismaClient();
+import { setCookie } from "cookies-next";
+import { prisma } from "../../lib/prisma";
 
 export default async (req, res) => {
   let { pollId, answerId, device } = req.body;

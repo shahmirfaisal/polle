@@ -1,8 +1,5 @@
-import {} from "../../../lib/prisma";
+import { prisma } from "../../../lib/prisma";
 import { getUser } from "../../../lib/getUser";
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
 
 export default async (req, res) => {
   let { question, showResults, thanksMessage, themeColor, answers, enable } =

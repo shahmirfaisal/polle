@@ -44,7 +44,10 @@ export const Header = ({ user }) => {
                 <Link href="/">
                   <MuiLink
                     title="Home"
-                    sx={{ cursor: "pointer" }}
+                    sx={{
+                      cursor: "pointer",
+                      color: pathname === "/" ? "primary.main" : "black",
+                    }}
                     underline="none"
                   >
                     Home
@@ -54,7 +57,10 @@ export const Header = ({ user }) => {
                 <Link href="/login">
                   <MuiLink
                     title="Login"
-                    sx={{ cursor: "pointer" }}
+                    sx={{
+                      cursor: "pointer",
+                      color: pathname === "/login" ? "primary.main" : "black",
+                    }}
                     underline="none"
                   >
                     Login
@@ -64,7 +70,10 @@ export const Header = ({ user }) => {
                 <Link href="/signup">
                   <MuiLink
                     title="Signup"
-                    sx={{ cursor: "pointer" }}
+                    sx={{
+                      cursor: "pointer",
+                      color: pathname === "/signup" ? "primary.main" : "black",
+                    }}
                     underline="none"
                   >
                     Signup
