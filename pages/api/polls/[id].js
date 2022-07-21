@@ -5,8 +5,8 @@ const prisma = new PrismaClient();
 
 export default async (req, res) => {
   const { id } = req.query;
-  let { question, showResults, thanksMessage, themeColor, answers } = req.body;
-  console.log(answers);
+  let { question, showResults, thanksMessage, themeColor, answers, enable } =
+    req.body;
 
   const user = await getUser(req, res);
 
@@ -41,6 +41,7 @@ export default async (req, res) => {
         thanksMessage,
         showResults,
         themeColor,
+        enable,
 
         answers: {
           // Delete previous answers

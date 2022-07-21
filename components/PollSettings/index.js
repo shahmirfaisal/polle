@@ -9,10 +9,12 @@ import {
   Switch,
   Typography,
   DialogActions,
+  Tooltip,
 } from "@mui/material";
 import { useState, useContext, useEffect } from "react";
 import classes from "./style.module.scss";
 import { PollContext } from "../../context/PollContext/";
+import InfoIcon from "@mui/icons-material/Info";
 
 export const PollSettings = ({ poll }) => {
   const [open, setOpen] = useState(false);
@@ -21,6 +23,8 @@ export const PollSettings = ({ poll }) => {
     changeThanksMessageHandler,
     showResults,
     changeShowResultsHandler,
+    enable,
+    changeEnableHandler,
   } = useContext(PollContext);
   const [message, setMessage] = useState(thanksMessage);
 
@@ -64,16 +68,42 @@ export const PollSettings = ({ poll }) => {
         className={classes.settings}
       >
         <Box>
-          <Typography>Show Results</Typography>
+          <Typography sx={{ display: "flex", alignItems: "center" }}>
+            {showResults ? "Show" : "Hide"} Results:{" "}
+            <Tooltip title="Do you want to show the results of poll once the user submits the vote?">
+              <InfoIcon sx={{ ml: 1 }} fontSize="small" />
+            </Tooltip>
+          </Typography>
           <Switch checked={showResults} onChange={changeShowResultsHandler} />
         </Box>
 
-        <Typography sx={{ fontWeight: 600, mb: -2, mt: 2 }}>
-          Thanks Message:
+        <Typography
+          sx={{
+            fontWeight: 600,
+            mb: -1,
+            mt: 2,
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          Thanks Message:{" "}
+          <Tooltip title="The message you want to display once the user submits the vote.">
+            <InfoIcon sx={{ ml: 1 }} fontSize="small" />
+          </Tooltip>
         </Typography>
         <Box>
           <Typography>{thanksMessage}</Typography>
           <Button onClick={openDialogHandler}>Configure</Button>
+        </Box>
+
+        <Box>
+          <Typography sx={{ display: "flex", alignItems: "center" }}>
+            Poll is {enable ? "Enabled" : "Disabled"}:{" "}
+            <Tooltip title="When poll is enabled users can see and submit votes to the poll. When it is disabled users will no longer be able to see it or submit votes even if they have the link to the poll.">
+              <InfoIcon sx={{ ml: 1 }} fontSize="small" />
+            </Tooltip>
+          </Typography>
+          <Switch checked={enable} onChange={changeEnableHandler} />
         </Box>
       </Paper>
 

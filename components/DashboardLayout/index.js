@@ -122,7 +122,7 @@ export const DashboardLayout = ({ children, user }) => {
 
         <Grid item xs>
           <Hidden smUp>
-            <Navbar />
+            <Navbar user={user} />
           </Hidden>
           <Container sx={{ mb: 5 }}>{children}</Container>
 

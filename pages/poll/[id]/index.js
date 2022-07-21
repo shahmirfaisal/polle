@@ -75,75 +75,88 @@ const Poll = ({ poll }) => {
         <title>{poll.question} - Polle</title>
       </Head>
 
-      <Paper sx={{ px: 3, py: 3 }}>
-        {voted && (
-          <>
-            <Typography
-              component="h2"
-              variant="h5"
-              sx={{ fontWeight: 700, color: poll.themeColor }}
-              align="center"
-            >
-              {poll.thanksMessage}
-            </Typography>
-
-            {poll.showResults && (
-              <button
-                onClick={() => router.push(`/poll/${poll.id}/results`)}
-                className="button"
-                style={{ margin: "20px auto 0 auto" }}
+      {!poll.enable ? (
+        <Paper sx={{ px: 3, py: 3 }}>
+          <Typography
+            component="h2"
+            variant="h5"
+            sx={{ fontWeight: 700, color: poll.themeColor }}
+            align="center"
+          >
+            This poll is disabled!
+          </Typography>
+        </Paper>
+      ) : (
+        <Paper sx={{ px: 3, py: 3 }}>
+          {voted && (
+            <>
+              <Typography
+                component="h2"
+                variant="h5"
+                sx={{ fontWeight: 700, color: poll.themeColor }}
+                align="center"
               >
-                See Results
-              </button>
-            )}
-          </>
-        )}
+                {poll.thanksMessage}
+              </Typography>
 
-        {!voted && (
-          <>
-            <Typography
-              component="h2"
-              variant="h5"
-              sx={{ fontWeight: 700, color: poll.themeColor }}
-            >
-              {poll.question}
-            </Typography>
-
-            <FormControl sx={{ mt: 2, display: "block" }}>
-              <RadioGroup value={vote} onChange={changeVoteHandler}>
-                {poll.answers.map((answer) => (
-                  <FormControlLabel
-                    key={answer.id}
-                    value={answer.id}
-                    control={
-                      <Radio
-                        icon={<RadioButtonUncheckedIcon />}
-                        checkedIcon={
-                          <RadioButtonCheckedIcon
-                            sx={{ color: poll.themeColor }}
-                          />
-                        }
-                      />
-                    }
-                    label={answer.name}
-                  />
-                ))}
-              </RadioGroup>
-            </FormControl>
-
-            <button
-              onClick={submitVoteHandler}
-              className="button"
-              disabled={loading}
-            >
-              VOTE{" "}
-              {loading && (
-                <CircularProgress size={18} sx={{ color: "white" }} />
+              {poll.showResults && (
+                <button
+                  onClick={() => router.push(`/poll/${poll.id}/results`)}
+                  className="button"
+                  style={{ margin: "20px auto 0 auto" }}
+                >
+                  See Results
+                </button>
               )}
-            </button>
-          </>
-        )}
-      </Paper>
+            </>
+          )}
+
+          {!voted && (
+            <>
+              <Typography
+                component="h2"
+                variant="h5"
+                sx={{ fontWeight: 700, color: poll.themeColor }}
+              >
+                {poll.question}
+              </Typography>
+
+              <FormControl sx={{ mt: 2, display: "block" }}>
+                <RadioGroup value={vote} onChange={changeVoteHandler}>
+                  {poll.answers.map((answer) => (
+                    <FormControlLabel
+                      key={answer.id}
+                      value={answer.id}
+                      control={
+                        <Radio
+                          icon={<RadioButtonUncheckedIcon />}
+                          checkedIcon={
+                            <RadioButtonCheckedIcon
+                              sx={{ color: poll.themeColor }}
+                            />
+                          }
+                        />
+                      }
+                      label={answer.name}
+                    />
+                  ))}
+                </RadioGroup>
+              </FormControl>
+
+              <button
+                onClick={submitVoteHandler}
+                className="button"
+                disabled={loading}
+              >
+                VOTE{" "}
+                {loading && (
+                  <CircularProgress size={18} sx={{ color: "white" }} />
+                )}
+              </button>
+            </>
+          )}
+        </Paper>
+      )}
 
       <style jsx>{`
         .button[disabled] {
@@ -170,28 +183,6 @@ const Poll = ({ poll }) => {
 };
 
 export const getServerSideProps = async ({ params, req, res, query }) => {
-  // const isVoted = getCookie(`poll-${params.id}`, { req, res });
-
-  // console.log("SERVER SIDE PROPS!");
-
-  // if (isVoted && query?.voted !== "true") {
-  //   return {
-  //     redirect: {
-  //       permanent: false,
-  //       destination: `/poll/${params.id}?voted=true`,
-  //     },
-  //   };
-  // }
-
-  // if (!isVoted && query?.voted === "true") {
-  //   return {
-  //     redirect: {
-  //       permanent: false,
-  //       destination: `/poll/${params.id}`,
-  //     },
-  //   };
-  // }
-
   const poll = await prisma.poll.findUnique({
     where: {
       id: +params.id,

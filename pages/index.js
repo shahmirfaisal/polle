@@ -1,16 +1,25 @@
-import { Box, Button, Container, Paper, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  Hidden,
+  Paper,
+  Typography,
+} from "@mui/material";
 import Head from "next/head";
 import { Header } from "../components/Header";
 import { Hero } from "../components/Hero";
 import Image from "next/image";
 import { Features } from "../components/Features";
 import { Footer } from "../components/Footer";
+import { Navbar } from "../components/Navbar";
+import { HomeLayout } from "../components/HomeLayout";
 import Link from "next/link";
 import { getUser } from "../lib/getUser";
 
 const HomePage = ({ user }) => {
   return (
-    <>
+    <HomeLayout user={user}>
       <Head>
         <title>POLLE - Create, Distribute and Analyze Polls</title>
         <meta
@@ -19,8 +28,8 @@ const HomePage = ({ user }) => {
         />
       </Head>
 
-      <Header user={user} />
       <Hero />
+
       <Features />
 
       <Container maxWidth="lg">
@@ -59,7 +68,7 @@ const HomePage = ({ user }) => {
       </Container>
 
       <Footer />
-    </>
+    </HomeLayout>
   );
 };
 

@@ -19,6 +19,7 @@ import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 import { Header } from "../components/Header";
+import { HomeLayout } from "../components/HomeLayout";
 import { Footer } from "../components/Footer";
 
 const LoginPage = () => {
@@ -47,9 +48,7 @@ const LoginPage = () => {
   };
 
   return (
-    <>
-      <Header />
-
+    <HomeLayout user={null}>
       <Container maxWidth="xl">
         <Head>
           <title>Login - Polle</title>
@@ -106,9 +105,7 @@ const LoginPage = () => {
           </Link>
         </Typography>
       </Container>
-
-      <Footer />
-    </>
+    </HomeLayout>
   );
 };
 

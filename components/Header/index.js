@@ -38,35 +38,63 @@ export const Header = ({ user }) => {
             </Typography>
           </Box>
 
-          {pathname === "/signup" || pathname === "/login" ? (
-            <Link href="/">
-              <MuiLink title="Home" sx={{ cursor: "pointer" }}>
-                Home
-              </MuiLink>
-            </Link>
-          ) : user ? (
-            <Link href="/dashboard">
-              <Button
-                color="primary"
-                variant="contained"
-                component="a"
-                title="Dashboard"
-              >
-                Go to Dashboard
-              </Button>
-            </Link>
-          ) : (
-            <Link href="/login">
-              <Button
-                color="primary"
-                variant="contained"
-                component="a"
-                title="Login"
-              >
-                Get Started
-              </Button>
-            </Link>
-          )}
+          <Box sx={{ "& > a": { ml: 3 } }}>
+            {pathname === "/signup" || pathname === "/login" ? (
+              <>
+                <Link href="/">
+                  <MuiLink
+                    title="Home"
+                    sx={{ cursor: "pointer" }}
+                    underline="none"
+                  >
+                    Home
+                  </MuiLink>
+                </Link>
+
+                <Link href="/login">
+                  <MuiLink
+                    title="Login"
+                    sx={{ cursor: "pointer" }}
+                    underline="none"
+                  >
+                    Login
+                  </MuiLink>
+                </Link>
+
+                <Link href="/signup">
+                  <MuiLink
+                    title="Signup"
+                    sx={{ cursor: "pointer" }}
+                    underline="none"
+                  >
+                    Signup
+                  </MuiLink>
+                </Link>
+              </>
+            ) : user ? (
+              <Link href="/dashboard">
+                <Button
+                  color="primary"
+                  variant="contained"
+                  component="a"
+                  title="Dashboard"
+                >
+                  Go to Dashboard
+                </Button>
+              </Link>
+            ) : (
+              <Link href="/login">
+                <Button
+                  color="primary"
+                  variant="contained"
+                  component="a"
+                  title="Login"
+                >
+                  Get Started
+                </Button>
+              </Link>
+            )}
+          </Box>
         </Container>
       </Toolbar>
     </AppBar>

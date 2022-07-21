@@ -129,6 +129,10 @@ export const getServerSideProps = async ({ req, res }) => {
   }
 
   const polls = await prisma.poll.findMany({
+    where: {
+      userId: user.id,
+    },
+
     include: {
       answers: {
         include: {

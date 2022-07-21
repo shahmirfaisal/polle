@@ -5,7 +5,8 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export default async (req, res) => {
-  let { question, showResults, thanksMessage, themeColor, answers } = req.body;
+  let { question, showResults, thanksMessage, themeColor, answers, enable } =
+    req.body;
 
   const user = await getUser(req, res);
 
@@ -26,6 +27,7 @@ export default async (req, res) => {
         thanksMessage,
         showResults,
         themeColor,
+        enable,
         answers: {
           create: answers,
         },

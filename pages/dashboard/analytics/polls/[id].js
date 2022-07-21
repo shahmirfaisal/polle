@@ -216,6 +216,16 @@ export const getServerSideProps = async ({ req, res, params }) => {
     },
   });
 
+  if (poll.userId !== user.id) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/dashboard/analytics",
+      },
+      props: {},
+    };
+  }
+
   return {
     props: {
       user,

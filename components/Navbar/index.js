@@ -22,8 +22,10 @@ import AddBoxIcon from "@mui/icons-material/AddBox";
 import classes from "./style.module.scss";
 import { UserContext } from "../../context/UserContext/";
 import LogoutIcon from "@mui/icons-material/Logout";
+import LockOpenIcon from "@mui/icons-material/LockOpen";
+import HomeIcon from "@mui/icons-material/Home";
 
-export const Navbar = () => {
+export const Navbar = ({ user }) => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const { logoutHandler } = useContext(UserContext);
@@ -46,56 +48,87 @@ export const Navbar = () => {
           onClick={closeDrawer}
           onKeyDown={closeDrawer}
         >
-          <List>
-            <ListItem disablePadding>
-              <ListItemButton onClick={() => router.push("/dashboard")}>
-                <ListItemIcon>
-                  <DashboardIcon />
-                </ListItemIcon>
-                <ListItemText primary="Dashboard" />
-              </ListItemButton>
-            </ListItem>
+          {user ? (
+            <List>
+              <ListItem disablePadding>
+                <ListItemButton onClick={() => router.push("/dashboard")}>
+                  <ListItemIcon>
+                    <DashboardIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Dashboard" />
+                </ListItemButton>
+              </ListItem>
 
-            <ListItem disablePadding>
-              <ListItemButton
-                onClick={() => router.push("/dashboard/create-poll")}
-              >
-                <ListItemIcon>
-                  <AddBoxIcon />
-                </ListItemIcon>
-                <ListItemText primary="New Poll" />
-              </ListItemButton>
-            </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton
+                  onClick={() => router.push("/dashboard/create-poll")}
+                >
+                  <ListItemIcon>
+                    <AddBoxIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="New Poll" />
+                </ListItemButton>
+              </ListItem>
 
-            <ListItem disablePadding>
-              <ListItemButton onClick={() => router.push("/dashboard/polls")}>
-                <ListItemIcon>
-                  <HowToVoteIcon />
-                </ListItemIcon>
-                <ListItemText primary="Polls" />
-              </ListItemButton>
-            </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton onClick={() => router.push("/dashboard/polls")}>
+                  <ListItemIcon>
+                    <HowToVoteIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Polls" />
+                </ListItemButton>
+              </ListItem>
 
-            <ListItem disablePadding>
-              <ListItemButton
-                onClick={() => router.push("/dashboard/analytics")}
-              >
-                <ListItemIcon>
-                  <BarChartIcon />
-                </ListItemIcon>
-                <ListItemText primary="Analytics" />
-              </ListItemButton>
-            </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton
+                  onClick={() => router.push("/dashboard/analytics")}
+                >
+                  <ListItemIcon>
+                    <BarChartIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Analytics" />
+                </ListItemButton>
+              </ListItem>
 
-            <ListItem disablePadding>
-              <ListItemButton onClick={logoutHandler}>
-                <ListItemIcon>
-                  <LogoutIcon />
-                </ListItemIcon>
-                <ListItemText primary="Logout" />
-              </ListItemButton>
-            </ListItem>
-          </List>
+              <ListItem disablePadding>
+                <ListItemButton onClick={logoutHandler}>
+                  <ListItemIcon>
+                    <LogoutIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Logout" />
+                </ListItemButton>
+              </ListItem>
+            </List>
+          ) : (
+            <List>
+              <ListItem disablePadding>
+                <ListItemButton onClick={() => router.push("/")}>
+                  <ListItemIcon>
+                    <HomeIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Home" />
+                </ListItemButton>
+              </ListItem>
+
+              <ListItem disablePadding>
+                <ListItemButton onClick={() => router.push("/login")}>
+                  <ListItemIcon>
+                    <LockOpenIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Login" />
+                </ListItemButton>
+              </ListItem>
+
+              <ListItem disablePadding>
+                <ListItemButton onClick={() => router.push("/signup")}>
+                  <ListItemIcon>
+                    <LockOpenIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Signup" />
+                </ListItemButton>
+              </ListItem>
+            </List>
+          )}
         </Box>
       </Drawer>
     </Paper>

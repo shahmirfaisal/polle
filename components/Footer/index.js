@@ -5,9 +5,13 @@ export const Footer = () => {
   return (
     <Box component="footer" bgcolor="#e9e9e9" py={5} mt={15}>
       <Container maxWidth="lg">
-        <Grid container>
-          <Grid item sm={6}>
-            <Box display="flex" alignItems="center">
+        <Grid container spacing={4}>
+          <Grid item sm={6} xs={12}>
+            <Box
+              display="flex"
+              alignItems="center"
+              sx={{ justifyContent: { xs: "center", sm: "left" } }}
+            >
               <Image
                 src="/logo.svg"
                 width={30}
@@ -18,8 +22,8 @@ export const Footer = () => {
             </Box>
           </Grid>
 
-          <Grid item sm={6}>
-            <Typography align="right">
+          <Grid item sm={6} xs={12}>
+            <Typography sx={{ textAlign: { xs: "center", sm: "right" } }}>
               Built by <a href="https://shahmir.me/">Shahmir Faisal</a>
             </Typography>
           </Grid>

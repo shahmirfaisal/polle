@@ -16,6 +16,7 @@ export const PollContextProvider = ({ children }) => {
   const router = useRouter();
   const [openDialog, setOpenDialog] = useState(false);
   const [poll, setPoll] = useState(null);
+  const [enable, setEnable] = useState(true);
 
   const openDialogHandler = () => setOpenDialog(true);
   const closeDialogHandler = () => {
@@ -55,6 +56,10 @@ export const PollContextProvider = ({ children }) => {
     setShowResults(event.target.checked);
   };
 
+  const changeEnableHandler = (event) => {
+    setEnable(event.target.checked);
+  };
+
   const createPollHandler = async (e) => {
     e.preventDefault();
 
@@ -65,6 +70,7 @@ export const PollContextProvider = ({ children }) => {
         themeColor,
         thanksMessage,
         showResults,
+        enable,
         answers: answers
           .filter((answer) => answer.value.trim().length)
           .map((answer) => ({ name: answer.value.trim() })),
@@ -90,6 +96,7 @@ export const PollContextProvider = ({ children }) => {
         themeColor,
         thanksMessage,
         showResults,
+        enable,
         answers: answers
           .filter((answer) => answer.value.trim().length)
           .map((answer) => ({ name: answer.value.trim() })),
@@ -142,6 +149,8 @@ export const PollContextProvider = ({ children }) => {
     poll,
     clearAll,
     handleAnswerDragEnd,
+    enable,
+    changeEnableHandler,
   };
 
   return <PollContext.Provider value={state}>{children}</PollContext.Provider>;

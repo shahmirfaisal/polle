@@ -33,6 +33,16 @@ export const getServerSideProps = async ({ req, res, params }) => {
     include: { answers: true },
   });
 
+  if (poll.userId !== user.id) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/dashboard",
+      },
+      props: {},
+    };
+  }
+
   return {
     props: {
       user,

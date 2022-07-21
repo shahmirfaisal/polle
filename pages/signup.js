@@ -15,6 +15,7 @@ import Head from "next/head";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import Link from "next/link";
+import { HomeLayout } from "../components/HomeLayout";
 
 const SignupPage = () => {
   const [name, setName] = useState("");
@@ -43,9 +44,7 @@ const SignupPage = () => {
   };
 
   return (
-    <>
-      <Header />
-
+    <HomeLayout user={null}>
       <Container maxWidth="xl">
         <Head>
           <title>Signup - Polle</title>
@@ -110,9 +109,7 @@ const SignupPage = () => {
           </Link>
         </Typography>
       </Container>
-
-      <Footer />
-    </>
+    </HomeLayout>
   );
 };
 

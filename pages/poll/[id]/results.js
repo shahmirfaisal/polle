@@ -127,7 +127,7 @@ export const getServerSideProps = async ({ params, req, res, query }) => {
     },
   });
 
-  if (!poll.showResults) {
+  if (!poll.showResults || !poll.enable) {
     return {
       redirect: {
         permanent: false,
