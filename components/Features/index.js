@@ -4,7 +4,7 @@ import { Feature } from "./Feature";
 
 export const Features = () => {
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="lg" sx={{ mt: 30 }}>
       <Feature
         title="Create POLLS in a few minutes"
         text="Easily craft your POLL with our easy-to-use editor."

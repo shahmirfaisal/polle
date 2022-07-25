@@ -57,7 +57,12 @@ const PollAnalyticsPage = ({ user, poll }) => {
       <Typography
         component="h1"
         variant="h2"
-        sx={{ fontWeight: 700, mt: 3, mb: 5 }}
+        sx={{
+          fontWeight: 700,
+          mt: 3,
+          mb: 5,
+          fontSize: { sm: "3.75rem", xs: "3rem" },
+        }}
         align="center"
       >
         <AutoGraphIcon sx={{ fontSize: 50 }} /> Analytics
@@ -119,6 +124,7 @@ const PollAnalyticsPage = ({ user, poll }) => {
             sx={{
               p: 2,
               height: "70vh",
+              position: "relative",
             }}
           >
             <Doughnut
@@ -126,8 +132,16 @@ const PollAnalyticsPage = ({ user, poll }) => {
               options={{ maintainAspectRatio: false }}
             />
             {!getTotalVotes(poll) && (
-              <Typography align="center">
-                This poll has not received any votes yet!
+              <Typography
+                align="center"
+                sx={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                }}
+              >
+                No Data. This poll has not received any votes yet!
               </Typography>
             )}
           </Paper>
@@ -145,12 +159,26 @@ const PollAnalyticsPage = ({ user, poll }) => {
             sx={{
               p: 2,
               height: "70vh",
+              position: "relative",
             }}
           >
             <Line
               data={getPollLineGraph(poll)}
               options={{ maintainAspectRatio: false }}
             />
+            {!getTotalVotes(poll) && (
+              <Typography
+                align="center"
+                sx={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                }}
+              >
+                No Data. This poll has not received any votes yet!
+              </Typography>
+            )}
           </Paper>
         </Grid>
       </Grid>

@@ -107,6 +107,15 @@ const DashboardPage = ({ user, polls }) => {
           Polls
         </Typography>
 
+        {!polls.length && (
+          <Typography>
+            You don't have any polls.{" "}
+            <Link href="/dashboard/create-poll">
+              <a>Let's create a new one!</a>
+            </Link>{" "}
+          </Typography>
+        )}
+
         {polls.map((poll) => (
           <PollItem key={poll.id} poll={poll} sx={{ mb: 5 }} />
         ))}

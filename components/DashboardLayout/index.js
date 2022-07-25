@@ -124,7 +124,7 @@ export const DashboardLayout = ({ children, user }) => {
           <Hidden smUp>
             <Navbar user={user} />
           </Hidden>
-          <Container sx={{ mb: 5 }}>{children}</Container>
+          <Container sx={{ mb: 5, minHeight: "100vh" }}>{children}</Container>
 
           <Footer />
         </Grid>

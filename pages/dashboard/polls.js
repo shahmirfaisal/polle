@@ -4,6 +4,7 @@ import { DashboardLayout } from "../../components/DashboardLayout/";
 import { Typography } from "@mui/material";
 import { PollItem } from "../../components/PollItem/";
 import Head from "next/head";
+import Link from "next/link";
 
 const PollsPage = ({ user, polls }) => {
   console.log(polls);
@@ -17,11 +18,25 @@ const PollsPage = ({ user, polls }) => {
       <Typography
         component="h1"
         variant="h3"
-        sx={{ fontWeight: 700, mt: 3, mb: 5 }}
+        sx={{
+          fontWeight: 700,
+          mt: 3,
+          mb: 5,
+          fontSize: { sm: "3.75rem", xs: "3rem" },
+        }}
         align="center"
       >
         Manage Your Polls
       </Typography>
+
+      {!polls.length && (
+        <Typography align="center">
+          You don't have any polls.{" "}
+          <Link href="/dashboard/create-poll">
+            <a>Let's create a new one!</a>
+          </Link>{" "}
+        </Typography>
+      )}
 
       {polls.map((poll) => (
         <PollItem key={poll.id} poll={poll} sx={{ mb: 6 }} />

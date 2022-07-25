@@ -17,14 +17,18 @@ export const Hero = () => {
           <Typography
             component="h1"
             variant="h2"
-            sx={{ fontWeight: 700, mt: 10 }}
+            sx={{
+              fontWeight: 700,
+              mt: 10,
+              fontSize: { sm: "3.75rem", xs: "3rem" },
+            }}
           >
             Everything you need to{" "}
             <Typography
               component="span"
               variant="h2"
               color="primary"
-              sx={{ fontWeight: 700 }}
+              sx={{ fontWeight: 700, fontSize: "inherit" }}
             >
               power your polls
             </Typography>

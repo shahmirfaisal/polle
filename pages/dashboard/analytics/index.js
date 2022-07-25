@@ -46,6 +46,8 @@ const AnalyticsPage = ({ user, polls }) => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          flexWrap: "wrap",
+          fontSize: { sm: "3.75rem", xs: "3rem" },
         }}
         align="center"
       >
@@ -62,8 +64,25 @@ const AnalyticsPage = ({ user, polls }) => {
           p: 2,
           height: "70vh",
           maxWidth: "90%",
+          position: "relative",
         }}
       >
+        {!polls.length && (
+          <Typography
+            sx={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+            }}
+          >
+            No Data. You don't have any polls.{" "}
+            <Link href="/dashboard/create-poll">
+              <a>Let's create a new one!</a>
+            </Link>{" "}
+          </Typography>
+        )}
+
         <Line
           data={getUserLineGraph(user, polls)}
           options={{ maintainAspectRatio: false }}
@@ -77,6 +96,15 @@ const AnalyticsPage = ({ user, polls }) => {
       >
         Pick a poll to view analytics
       </Typography>
+
+      {!polls.length && (
+        <Typography>
+          You don't have any polls.{" "}
+          <Link href="/dashboard/create-poll">
+            <a>Let's create a new one!</a>
+          </Link>{" "}
+        </Typography>
+      )}
 
       <Box component="section">
         {polls.map((poll) => (

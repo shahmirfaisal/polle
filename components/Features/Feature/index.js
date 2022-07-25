@@ -1,8 +1,9 @@
-import { Container, Paper, Typography } from "@mui/material";
+import { Container, Paper, Typography, Box } from "@mui/material";
+import Image from "next/image";
 
 export const Feature = ({ title, text, image }) => {
   return (
-    <Container maxWidth="md" sx={{ mt: 30 }}>
+    <Container maxWidth="md" sx={{}}>
       <Typography
         variant="h4"
         align="center"
@@ -11,21 +12,13 @@ export const Feature = ({ title, text, image }) => {
       >
         {title}
       </Typography>
-      <Typography align="center" sx={{ mt: 1, mb: 7 }}>
+      <Typography align="center" sx={{ mt: 1, mb: 0 }}>
         {text}
       </Typography>
-      <Paper sx={{ width: "100%", height: "400px" }}>
-        <img
-          src={image}
-          style={{
-            display: "block",
-            width: "100%",
-            height: "100%",
-            objectFit: "contain",
-            objectPosition: "top",
-          }}
-        />
-      </Paper>
+
+      <Box display="flex" justifyContent="center">
+        <Image src={image} width={600} height={600} objectFit="contain" />
+      </Box>
     </Container>
   );
 };

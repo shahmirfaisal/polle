@@ -3,7 +3,11 @@ export const getTotalVotes = (poll) => {
 };
 
 export const getVotesPercentage = (poll, answer) => {
-  return +((answer.votes.length * 100) / getTotalVotes(poll)).toFixed(1);
+  const result = +((answer.votes.length * 100) / getTotalVotes(poll)).toFixed(
+    1
+  );
+
+  return isNaN(result) ? 0 : result;
 };
 
 export const getTodayVotes = (poll) => {

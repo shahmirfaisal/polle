@@ -10,7 +10,7 @@ export const PollContextProvider = ({ children }) => {
   const [question, setQuestion] = useState("");
   const [answers, setAnswers] = useState([{ id: 1, value: "" }]);
   const [thanksMessage, setThanksMessage] = useState("Thank You!");
-  const [themeColor, setThemeColor] = useState("#1976D2");
+  const [themeColor, setThemeColor] = useState("#00AB55");
   const [showResults, setShowResults] = useState(true);
   const [loading, setLoading] = useState(false);
   const router = useRouter();

@@ -25,6 +25,7 @@ export const PollCustomize = ({ poll }) => {
     "#00bcd4",
     "#009688",
     "#4caf50",
+    "#00AB55",
     "#8bc34a",
     "#cddc39",
     "#ffeb3b",
@@ -81,10 +82,6 @@ export const PollCustomize = ({ poll }) => {
           </Paper>
         </Grid>
       </Grid>
-      {/* 
-      <Box sx={{ height: "600px", mt: 4 }}>
-        <Poll themeColor={themeColor} />
-      </Box> */}
     </Box>
   );
 };

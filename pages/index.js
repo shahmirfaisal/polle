@@ -66,8 +66,6 @@ const HomePage = ({ user }) => {
           </Box>
         </Box>
       </Container>
-
-      <Footer />
     </HomeLayout>
   );
 };
