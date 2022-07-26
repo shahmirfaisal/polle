@@ -23,6 +23,7 @@ import { useRouter } from "next/router";
 import { getCookie } from "cookies-next";
 import Link from "next/link";
 import { getVotesPercentage } from "../../../utils/votes";
+import { Seo } from "../../../components/Seo/";
 import Head from "next/head";
 
 const Poll = ({ poll }) => {
@@ -39,9 +40,10 @@ const Poll = ({ poll }) => {
         gridTemplateColumns: { xs: "1fr", sm: "600px" },
       }}
     >
-      <Head>
-        <title>Results - {poll.question}</title>
-      </Head>
+      <Seo
+        title={`Results - ${poll.question}`}
+        description="POLLE is the easiest and fastest way to create, distribute and analyze your polls, from start to finish!"
+      />
 
       <Paper sx={{ px: 3, py: 3 }}>
         <Typography

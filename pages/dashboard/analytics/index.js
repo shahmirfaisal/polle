@@ -18,6 +18,7 @@ import {
   LineElement,
 } from "chart.js";
 import Head from "next/head";
+import { Seo } from "../../../components/Seo/";
 
 Chart.register(
   ArcElement,
@@ -32,9 +33,10 @@ Chart.register(
 const AnalyticsPage = ({ user, polls }) => {
   return (
     <DashboardLayout user={user}>
-      <Head>
-        <title>Analytics</title>
-      </Head>
+      <Seo
+        title="Analytics"
+        description="POLLE is the easiest and fastest way to create, distribute and analyze your polls, from start to finish!"
+      />
 
       <Typography
         component="h1"

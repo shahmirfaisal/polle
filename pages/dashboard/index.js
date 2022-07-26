@@ -21,13 +21,15 @@ import Link from "next/link";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import { PollItem } from "../../components/PollItem/";
 import Head from "next/head";
+import { Seo } from "../../components/Seo/";
 
 const DashboardPage = ({ user, polls }) => {
   return (
     <DashboardLayout user={user}>
-      <Head>
-        <title>Dashboard</title>
-      </Head>
+      <Seo
+        title="Dashboard"
+        description="POLLE is the easiest and fastest way to create, distribute and analyze your polls, from start to finish!"
+      />
 
       <Box
         sx={{

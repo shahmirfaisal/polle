@@ -5,15 +5,15 @@ import { Typography } from "@mui/material";
 import { PollItem } from "../../components/PollItem/";
 import Head from "next/head";
 import Link from "next/link";
+import { Seo } from "../../components/Seo/";
 
 const PollsPage = ({ user, polls }) => {
-  console.log(polls);
-
   return (
     <DashboardLayout user={user}>
-      <Head>
-        <title>Manage Your Polls</title>
-      </Head>
+      <Seo
+        title="Manage Your Polls"
+        description="POLLE is the easiest and fastest way to create, distribute and analyze your polls, from start to finish!"
+      />
 
       <Typography
         component="h1"

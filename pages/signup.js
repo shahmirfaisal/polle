@@ -15,6 +15,7 @@ import Head from "next/head";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import Link from "next/link";
+import { Seo } from "../components/Seo/";
 import { HomeLayout } from "../components/HomeLayout";
 
 const SignupPage = () => {
@@ -46,9 +47,10 @@ const SignupPage = () => {
   return (
     <HomeLayout user={null}>
       <Container maxWidth="xl">
-        <Head>
-          <title>Signup - Polle</title>
-        </Head>
+        <Seo
+          title="Signup - Polle"
+          description="POLLE is the easiest and fastest way to create, distribute and analyze your polls, from start to finish!"
+        />
 
         <Typography
           component="h1"

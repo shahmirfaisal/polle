@@ -13,10 +13,10 @@ export const SharePoll = ({ poll }) => {
       }}
     >
       <Box sx={{ borderRight: 1, borderColor: "divider", px: 1 }}>
-        http://localhost:3000/poll/{poll?.id}
+        {process.env.NEXT_PUBLIC_SITE_URL}/poll/{poll?.id}
       </Box>
       <CopyToClipboard
-        text={`http://localhost:3000/poll/${poll?.id}`}
+        text={`${process.env.NEXT_PUBLIC_SITE_URL}/poll/${poll?.id}`}
         onCopy={() => NotificationManager.success("Copied to clipboard!")}
       >
         <Button sx={{ borderRadius: 0 }} variant="contained" size="small">

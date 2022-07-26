@@ -1,14 +1,16 @@
 import { getUser } from "../../../lib/getUser";
 import { prisma } from "../../../lib/prisma";
 import { PollManager } from "../../../components/PollManager/";
+import { Seo } from "../../../components/Seo/";
 import Head from "next/head";
 
 const EditPollPage = ({ user, poll }) => {
   return (
     <>
-      <Head>
-        <title>Edit Your Poll</title>
-      </Head>
+      <Seo
+        title="Edit Your Poll"
+        description="POLLE is the easiest and fastest way to create, distribute and analyze your polls, from start to finish!"
+      />
 
       <PollManager user={user} poll={poll} />
     </>

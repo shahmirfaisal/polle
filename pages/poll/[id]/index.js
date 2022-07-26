@@ -20,6 +20,7 @@ import { NotificationManager } from "react-notifications";
 import { getDeviceType } from "../../../utils/getDeviceType";
 import { useRouter } from "next/router";
 import { getCookie } from "cookies-next";
+import { Seo } from "../../../components/Seo/";
 import Head from "next/head";
 
 const Poll = ({ poll }) => {
@@ -71,9 +72,10 @@ const Poll = ({ poll }) => {
         gridTemplateColumns: { xs: "1fr", sm: "500px" },
       }}
     >
-      <Head>
-        <title>{poll.question} - Polle</title>
-      </Head>
+      <Seo
+        title={`${poll.question} - Polle`}
+        description="POLLE is the easiest and fastest way to create, distribute and analyze your polls, from start to finish!"
+      />
 
       {!poll.enable ? (
         <Paper sx={{ px: 3, py: 3 }}>

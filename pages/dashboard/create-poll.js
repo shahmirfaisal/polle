@@ -22,6 +22,7 @@ import { PollContext } from "../../context/PollContext/";
 import Link from "next/link";
 import { SharePoll } from "../../components/SharePoll/";
 import Head from "next/head";
+import { Seo } from "../../components/Seo/";
 
 const CreatePollPage = ({ user }) => {
   const { openDialog, openDialogHandler, closeDialogHandler, poll } =
@@ -34,9 +35,10 @@ const CreatePollPage = ({ user }) => {
 
   return (
     <>
-      <Head>
-        <title>Create a New Poll</title>
-      </Head>
+      <Seo
+        title="Create a New Poll"
+        description="POLLE is the easiest and fastest way to create, distribute and analyze your polls, from start to finish!"
+      />
 
       <PollManager user={user} />
 

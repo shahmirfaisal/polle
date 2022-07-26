@@ -30,6 +30,7 @@ import LinearProgress, {
   linearProgressClasses,
 } from "@mui/material/LinearProgress";
 import Head from "next/head";
+import { Seo } from "../../../../components/Seo/";
 
 Chart.register(
   ArcElement,
@@ -50,9 +51,10 @@ const PollAnalyticsPage = ({ user, poll }) => {
 
   return (
     <DashboardLayout user={user}>
-      <Head>
-        <title>Analytics - {poll.question}</title>
-      </Head>
+      <Seo
+        title={`Analytics - ${poll.question}`}
+        description="POLLE is the easiest and fastest way to create, distribute and analyze your polls, from start to finish!"
+      />
 
       <Typography
         component="h1"

@@ -16,17 +16,15 @@ import { Navbar } from "../components/Navbar";
 import { HomeLayout } from "../components/HomeLayout";
 import Link from "next/link";
 import { getUser } from "../lib/getUser";
+import { Seo } from "../components/Seo/";
 
 const HomePage = ({ user }) => {
   return (
     <HomeLayout user={user}>
-      <Head>
-        <title>POLLE - Create, Distribute and Analyze Polls</title>
-        <meta
-          name="description"
-          content="POLLE is the easiest and fastest way to create, distribute and analyze your polls, from start to finish!"
-        />
-      </Head>
+      <Seo
+        title="POLLE - Create, Distribute and Analyze Polls"
+        description="POLLE is the easiest and fastest way to create, distribute and analyze your polls, from start to finish!"
+      />
 
       <Hero />
 
