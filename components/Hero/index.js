@@ -39,7 +39,7 @@ export const Hero = () => {
             analyze your polls, from start to finish!
           </Typography>
 
-          <Link href="/login">
+          <Link passHref href="/login">
             <Button
               variant="contained"
               size="large"

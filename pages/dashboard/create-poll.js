@@ -61,7 +61,7 @@ const CreatePollPage = ({ user }) => {
           <Typography sx={{ mt: 3 }}>Share with others</Typography>
           <SharePoll poll={poll} />
 
-          <Link href="/dashboard">
+          <Link href="/dashboard" passHref>
             <Button
               variant="contained"
               size="small"

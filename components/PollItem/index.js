@@ -62,27 +62,25 @@ export const PollItem = ({ poll, sx }) => {
       }}
     >
       <Typography sx={{ fontWeight: 600 }} component="h3" variant="h5">
-        <Link href={`/poll/${poll.id}`}>
-          <MuiLink underline="hover" sx={{ cursor: "pointer" }}>
+        <Link href={`/poll/${poll.id}`} passHref>
+          <MuiLink target="_blank" underline="hover" sx={{ cursor: "pointer" }}>
             {poll.question}
           </MuiLink>
         </Link>
       </Typography>
 
-      <Box sx={{ mt: 3, mb: 2 }}>
-        <Tooltip title="Edit" placement="top">
-          <EditIcon
-            sx={{ cursor: "pointer" }}
-            onClick={() => router.push(`/dashboard/edit-poll/${poll.id}`)}
-          />
-        </Tooltip>
+      <Box sx={{ mt: 3, mb: 2, "& a": { color: "black" } }}>
+        <Link href={`/dashboard/edit-poll/${poll.id}`} passHref>
+          <a title="Edit">
+            <EditIcon />
+          </a>
+        </Link>
 
-        <Tooltip title="Analytics" placement="top">
-          <AutoGraphIcon
-            sx={{ mx: 2, cursor: "pointer" }}
-            onClick={() => router.push(`/dashboard/analytics/polls/${poll.id}`)}
-          />
-        </Tooltip>
+        <Link href={`/dashboard/analytics/polls/${poll.id}`} passHref>
+          <a title="Analytics">
+            <AutoGraphIcon sx={{ mx: 2 }} />
+          </a>
+        </Link>
 
         <Tooltip title="Share" placement="top">
           <ShareIcon
@@ -110,7 +108,7 @@ export const PollItem = ({ poll, sx }) => {
           justifyContent: "space-between",
         }}
       >
-        <Link href={`/dashboard/analytics/polls/${poll.id}`}>
+        <Link href={`/dashboard/analytics/polls/${poll.id}`} passHref>
           <MuiLink
             sx={{ cursor: "pointer" }}
             underline="hover"

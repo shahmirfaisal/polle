@@ -8,7 +8,7 @@ export const Feature = ({ title, text, image }) => {
         variant="h4"
         align="center"
         sx={{ fontWeight: 600 }}
-        component="h3"
+        component="h2"
       >
         {title}
       </Typography>
@@ -17,7 +17,13 @@ export const Feature = ({ title, text, image }) => {
       </Typography>
 
       <Box display="flex" justifyContent="center">
-        <Image src={image} width={600} height={600} objectFit="contain" />
+        <Image
+          src={image}
+          width={600}
+          height={600}
+          objectFit="contain"
+          alt={title}
+        />
       </Box>
     </Container>
   );

@@ -52,7 +52,7 @@ const DashboardPage = ({ user, polls }) => {
               Let start by creating a new poll!
             </Typography>
 
-            <Link href="/dashboard/create-poll">
+            <Link href="/dashboard/create-poll" passHref>
               <Button
                 variant="contained"
                 component="a"

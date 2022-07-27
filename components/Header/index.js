@@ -29,7 +29,13 @@ export const Header = ({ user }) => {
           }}
         >
           <Box display="flex" alignItems="center">
-            <Image src="/logo.svg" width={50} height={50} objectFit="contain" />
+            <Image
+              src="/logo.svg"
+              width={50}
+              height={50}
+              objectFit="contain"
+              alt="POLLE"
+            />
             <Typography
               color="primary"
               sx={{ fontWeight: 700, ml: 1, fontSize: "1.3rem" }}
@@ -41,7 +47,7 @@ export const Header = ({ user }) => {
           <Box sx={{ "& > a": { ml: 3 } }}>
             {pathname === "/signup" || pathname === "/login" ? (
               <>
-                <Link href="/">
+                <Link passHref href="/">
                   <MuiLink
                     title="Home"
                     sx={{
@@ -54,7 +60,7 @@ export const Header = ({ user }) => {
                   </MuiLink>
                 </Link>
 
-                <Link href="/login">
+                <Link passHref href="/login">
                   <MuiLink
                     title="Login"
                     sx={{
@@ -67,7 +73,7 @@ export const Header = ({ user }) => {
                   </MuiLink>
                 </Link>
 
-                <Link href="/signup">
+                <Link passHref href="/signup">
                   <MuiLink
                     title="Signup"
                     sx={{
@@ -81,7 +87,7 @@ export const Header = ({ user }) => {
                 </Link>
               </>
             ) : user ? (
-              <Link href="/dashboard">
+              <Link passHref href="/dashboard">
                 <Button
                   color="primary"
                   variant="contained"
@@ -92,7 +98,7 @@ export const Header = ({ user }) => {
                 </Button>
               </Link>
             ) : (
-              <Link href="/login">
+              <Link passHref href="/login">
                 <Button
                   color="primary"
                   variant="contained"

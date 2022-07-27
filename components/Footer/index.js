@@ -17,6 +17,7 @@ export const Footer = () => {
                 width={30}
                 height={30}
                 objectFit="contain"
+                alt="POLLE"
               />
               <Typography sx={{ ml: 1, fontWeight: 600 }}>POLLE</Typography>
             </Box>

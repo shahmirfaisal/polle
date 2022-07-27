@@ -35,7 +35,13 @@ export const Navbar = ({ user }) => {
 
   return (
     <Paper sx={{ p: 1, display: "flex", justifyContent: "space-between" }}>
-      <Image src="/logo.svg" width="40px" height="40px" objectFit="contain" />
+      <Image
+        src="/logo.svg"
+        width="40px"
+        height="40px"
+        objectFit="contain"
+        alt="POLLE"
+      />
 
       <IconButton onClick={openDrawer}>
         <MenuIcon />

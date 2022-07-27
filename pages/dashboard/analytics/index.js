@@ -118,7 +118,7 @@ const AnalyticsPage = ({ user, polls }) => {
             }}
           >
             <Typography component="h3" variant="h6">
-              <Link href={`/dashboard/analytics/polls/${poll.id}`}>
+              <Link href={`/dashboard/analytics/polls/${poll.id}`} passHref>
                 <MuiLink
                   sx={{
                     cursor: "pointer",

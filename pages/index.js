@@ -41,7 +41,7 @@ const HomePage = ({ user }) => {
           boxShadow="rgb(145 158 171 / 20%) 0px 0px 2px 0px, rgb(145 158 171 / 12%) 0px 12px 24px -4px"
         >
           <Box maxWidth="700px" mx="auto">
-            <Typography variant="h4" component="h4" sx={{ fontWeight: 700 }}>
+            <Typography variant="h4" component="h3" sx={{ fontWeight: 700 }}>
               Start Creating Polls
             </Typography>
             <Typography sx={{ my: 3 }}>
@@ -49,7 +49,7 @@ const HomePage = ({ user }) => {
               and analyzing them in the dashboard.
             </Typography>
 
-            <Link href="/login">
+            <Link href="/login" passHref>
               <Button
                 variant="contained"
                 color="inherit"
