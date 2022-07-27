@@ -42,6 +42,7 @@ export const DashboardLayout = ({ children, user }) => {
                   width="70px"
                   height="70px"
                   objectFit="contain"
+                  alt="POLLE"
                 />
               </Box>
 

@@ -43,7 +43,11 @@ const DashboardPage = ({ user, polls }) => {
       >
         <Grid container spacing={3}>
           <Grid item xs={12} lg={10} sm={8}>
-            <Typography variant="h5" sx={{ fontWeight: 700, color: "#212b36" }}>
+            <Typography
+              variant="h5"
+              component="h2"
+              sx={{ fontWeight: 700, color: "#212b36" }}
+            >
               Welcome Back! <br />
               {user.name}
             </Typography>
@@ -72,6 +76,7 @@ const DashboardPage = ({ user, polls }) => {
                 width={400}
                 height={400}
                 objectFit="contain"
+                alt="Create a new Poll!"
               />
             </Grid>
           </Hidden>
