@@ -1,10 +1,15 @@
 import { Container, Typography, Link as MuiLink } from "@mui/material";
 import { HomeLayout } from "../components/HomeLayout/";
 import Link from "next/link";
+import Head from "next/head";
 
 const Custom404 = () => {
   return (
     <HomeLayout>
+      <Head>
+        <title>Page Not Found - POLLE</title>
+      </Head>
+
       <Container
         maxWidth="lg"
         sx={{
