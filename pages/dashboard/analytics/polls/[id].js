@@ -246,6 +246,12 @@ export const getServerSideProps = async ({ req, res, params }) => {
     },
   });
 
+  if (!poll) {
+    return {
+      notFound: true,
+    };
+  }
+
   if (poll.userId !== user.id) {
     return {
       redirect: {

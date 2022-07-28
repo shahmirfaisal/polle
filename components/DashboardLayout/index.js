@@ -18,7 +18,6 @@ import { removeCookies } from "cookies-next";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import HowToVoteIcon from "@mui/icons-material/HowToVote";
 import Image from "next/image";
-import { BottomNav } from "../BottomNav";
 import { Footer } from "../Footer/";
 import { Navbar } from "../Navbar";
 import { UserContext } from "../../context/UserContext/";

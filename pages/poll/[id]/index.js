@@ -194,6 +194,12 @@ export const getServerSideProps = async ({ params, req, res, query }) => {
     },
   });
 
+  if (!poll) {
+    return {
+      notFound: true,
+    };
+  }
+
   return {
     props: {
       poll: JSON.parse(JSON.stringify(poll)),
