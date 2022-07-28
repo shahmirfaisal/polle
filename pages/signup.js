@@ -36,7 +36,7 @@ const SignupPage = () => {
         email,
         password,
       });
-      router.replace("/dashboard");
+      router.replace("/dashboard?ref=signup");
     } catch (error) {
       errorHandler(error);
     }

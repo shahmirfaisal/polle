@@ -22,8 +22,11 @@ import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import { PollItem } from "../../components/PollItem/";
 import Head from "next/head";
 import { Seo } from "../../components/Seo/";
+import { useRouter } from "next/router";
 
 const DashboardPage = ({ user, polls }) => {
+  const router = useRouter();
+
   return (
     <DashboardLayout user={user}>
       <Seo
@@ -48,8 +51,9 @@ const DashboardPage = ({ user, polls }) => {
               component="h2"
               sx={{ fontWeight: 700, color: "#212b36" }}
             >
-              Welcome Back! <br />
-              {user.name}
+              {router.query.ref === "signup"
+                ? `Welcome ${user.name}!`
+                : `Welcome Back ${user.name}!`}
             </Typography>
 
             <Typography sx={{ my: 2, color: "#212b36" }}>
