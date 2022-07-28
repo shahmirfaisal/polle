@@ -26,12 +26,12 @@ Not a feature though. But tried my best to build a nice-looking landing page.
 ### 2. Authentication
 
 I added authentication using JWT and Cookies.
-![Signup Page](https://cdn.hashnode.com/res/hashnode/image/upload/v1658944187130/T8hRZSO3Q.png align="left")
+![Signup Page](https://cdn.hashnode.com/res/hashnode/image/upload/v1658944187130/T8hRZSO3Q.png)
 
 ### 3. Dashboard
 
 The dashboard shows an overview of the polls, votes and votes on the current day.
-![Dashboard](https://cdn.hashnode.com/res/hashnode/image/upload/v1658944137653/kp4er1lJJ.png align="left")
+![Dashboard](https://cdn.hashnode.com/res/hashnode/image/upload/v1658944137653/kp4er1lJJ.png)
 
 ### 4. Poll Creation
 
@@ -42,11 +42,11 @@ Users can not only create polls, but they can also customize and configure them.
 1. Show a custom "thanks message" that the audience will see after submitting the vote.
 1. Show or hide results. If results are hidden, the audience can't see the results after voting.
 1. Enable or disable the poll anytime. The audience can't vote if the poll is disabled.
-   ![Create New Poll](https://cdn.hashnode.com/res/hashnode/image/upload/v1658944088199/oEage-OFb.png align="left")
+   ![Create New Poll](https://cdn.hashnode.com/res/hashnode/image/upload/v1658944088199/oEage-OFb.png)
 
 ### 5. Polls Page
 
-![Poll Page](https://cdn.hashnode.com/res/hashnode/image/upload/v1658992768663/o3woFnh2w.png align="left")
+![Poll Page](https://cdn.hashnode.com/res/hashnode/image/upload/v1658992768663/o3woFnh2w.png)
 
 ### 6. Analytics
 
@@ -55,12 +55,12 @@ The analytics page shows:
 1. Number of votes on each answer.
 1. Number of notes on each day.
 1. Votes from different devices like desktop, mobile, and tablet.
-   ![Analytics](https://cdn.hashnode.com/res/hashnode/image/upload/v1658944437007/pn9HtFmd8.png align="left")
+   ![Analytics](https://cdn.hashnode.com/res/hashnode/image/upload/v1658944437007/pn9HtFmd8.png)
 
 ### 7. The Poll
 
 This is the Poll page where users can vote and can also see the results if allowed by the creator.
-![Poll](https://cdn.hashnode.com/res/hashnode/image/upload/v1658945036252/Z2yjgoggB.png align="left")
+![Poll](https://cdn.hashnode.com/res/hashnode/image/upload/v1658945036252/Z2yjgoggB.png)
 
 There are some other features and pages as well. Make sure to explore them.
 
@@ -140,9 +140,9 @@ npx create-next-app polle
 ```
 
 Installed Prisma, set up PlanetScale, and created the schema. I started off by implementing authentication, then CRUD operations on the poll, then implemented analytics by using chart.js, and at the end built this cool logo:
-![Logo](https://cdn.hashnode.com/res/hashnode/image/upload/v1658988177554/aEo74q9wz.png align="left")
+![Logo](https://cdn.hashnode.com/res/hashnode/image/upload/v1658988177554/aEo74q9wz.png)
 Which is nothing but a copy of an emoji from Notion 🤣. I just changed its color using Figma 😊. I'm not a designer so I had to do this 😔. I also created an open-graph image using Canva:
-![Open Graph Image](https://cdn.hashnode.com/res/hashnode/image/upload/v1658988466883/_a6AC9uT8.png align="left")
+![Open Graph Image](https://cdn.hashnode.com/res/hashnode/image/upload/v1658988466883/_a6AC9uT8.png)
 
 ## 😕 Difficulties
 
