@@ -21,7 +21,7 @@ Here are some reasons why I built **Polle** for this hackathon:
 ### 1. Landing Page
 
 Not a feature though. But tried my best to build a nice-looking landing page.
-![Landing Page](https://cdn.hashnode.com/res/hashnode/image/upload/v1658944219483/b9mwMgjPo.png align="left")
+![Landing Page](https://cdn.hashnode.com/res/hashnode/image/upload/v1658944219483/b9mwMgjPo.png)
 
 ### 2. Authentication
 
