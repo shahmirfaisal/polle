@@ -172,3 +172,5 @@ I'm Shahmir Faisal, currently pursuing my Bachelor's in Computer Engineering. I'
 ## 🎇 Conclusion
 
 In the end, I want to say thanks to Hashnode and PlanetScale for organizing such a great hackathon where we can learn and show our skills by building cool projects.
+
+Built for [Hashnode](https://hashnode.com/) and [PlanetScale](https://planetscale.com/) [Hackathon](https://townhall.hashnode.com/planetscale-hackathon).
