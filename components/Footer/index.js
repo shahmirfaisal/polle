@@ -1,5 +1,5 @@
-import { Box, Container, Grid, Typography } from "@mui/material";
-import Image from "next/image";
+import { Box, Container, Grid, Typography } from "@mui/material"
+import Image from "next/image"
 
 export const Footer = () => {
   return (
@@ -25,7 +25,7 @@ export const Footer = () => {
 
           <Grid item sm={6} xs={12}>
             <Typography sx={{ textAlign: { xs: "center", sm: "right" } }}>
-              Built by <a href="https://shahmir.me/">Shahmir Faisal</a>
+              Built by <a href="https://shahmirfaisal.com/">Shahmir Faisal</a>
             </Typography>
           </Grid>
         </Grid>
@@ -49,5 +49,5 @@ export const Footer = () => {
         </Typography>
       </Container>
     </Box>
-  );
-};
+  )
+}
